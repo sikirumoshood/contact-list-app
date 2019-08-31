@@ -1,0 +1,117 @@
+.top__bar{
+    height: 50px;
+    border-style: none;
+    margin-bottom: 10px;
+    padding-left: 50px;
+}
+
+.top__bar__btn{
+    display: inline;
+    border-style: none;
+    border-radius: 5px;
+    background: inherit;
+    color:#B3B3B3;
+    cursor: pointer;
+    margin-right:10%;
+
+}
+#contacts__btn{
+    color:skyblue;
+}
+.contact__status__ball, .favourite__status__ball{
+   
+    display: inline-block;
+    margin:20px;
+    background-color: skyblue;
+    border-radius: 50%;
+    width:6px;
+    height:6px;
+    margin-top:3px;
+    
+}
+
+.contact__status__ball{
+    
+    margin-left: 29px;
+    margin-right: 68px;
+}
+
+.search__input{
+    border-style: solid;
+    height: 28px;
+    width: 95%;
+    border-radius: 50px;
+    border-width: 0.1em;
+    border-color: #D6D6D6;
+    margin-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    
+}
+
+.search__pane{
+    padding-left:  15px;
+    padding-right: 15px;
+}
+
+.search__input:focus{
+    outline-width: 0;
+}
+
+.search__input::placeholder{
+    color:#B3B3B3;
+    text-align: center;
+}
+
+.input-icon {
+    color:#B3B3B3;
+    position: absolute;
+    left: 58px;
+    top:77px;
+    font-weight: 100;
+    
+}
+
+.mockup{
+    position: absolute;
+    left:300px;
+    top:8%;
+}
+
+.mockup img{
+    
+    height: 600px;
+    width:600px;
+}
+
+.app{
+    width:250px;
+    height:500px;
+    position: absolute;
+    left:460px;
+    top:15%;
+    z-index: 2;
+    
+}
+
+.divider{
+    margin-left:4px;
+    width:270px;
+    height: 0.01em;
+    opacity: 0.3;
+    background-color: #EBEBEB;
+}
+
+.contacts__container{
+    padding-left:13px;
+    padding-right: 13px;
+    margin-left: 20px;
+}
+
+.favourites__container{
+    padding-left:13px;
+    padding-right: 13px;
+    margin-left: 20px;
+}
+
