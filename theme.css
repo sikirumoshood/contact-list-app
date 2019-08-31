@@ -3,7 +3,7 @@
 	border-style: none;
 	margin-bottom: 10px;
 	padding-left: 50px;
-}
+}	
 
 .top__bar__btn {
 	display: inline;
@@ -13,6 +13,7 @@
 	color: #b3b3b3;
 	cursor: pointer;
 	margin-right: 10%;
+	outline-width: 0;
 }
 #contacts__btn {
 	color: skyblue;
