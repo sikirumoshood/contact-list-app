@@ -67,6 +67,7 @@ window.addEventListener('updateContact', (e) => {
 	console.log('Update contact event captured', e.detail);
 	ContactApp.updateContact(e.detail);
 });
+
 alert('Welcome TEAM NAVIGATOR! Build the world!!!');
 window.addEventListener('newContact', (e) => {
 	console.log('New contact event captured', e.detail);
