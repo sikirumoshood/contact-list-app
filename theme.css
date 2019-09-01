@@ -217,3 +217,46 @@ body {
 	padding-right: 13px;
 	margin-left: 20px;
 }
+
+.footer {
+	opacity: 0.8;
+	background-color: white;
+}
+
+.btn-left {
+	left: 0.4em;
+	position: absolute;
+	bottom: 0.10em;
+	font-size: 15px;
+	border-radius: 100%;
+	
+}
+
+.icons li {
+	margin-top: 3px;
+	height: 7px;
+	
+}	
+
+.plus_bar {
+	font-size: 16px;
+	background-color: red;
+	color: white;
+	padding: 15px;
+	border-radius: 50%;
+	position: absolute;
+	bottom: 0.2em;
+	margin-left: 110px;
+	width: 25px;
+	height: 25px;
+	border-style: none;
+
+}
+
+.plus_icon {
+	position: absolute;
+	left: 20px;
+	font-weight: bold;
+}
+
+        
