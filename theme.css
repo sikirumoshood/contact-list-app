@@ -1,3 +1,6 @@
+body {
+	font-family: cursive;
+}
 .top__bar {
 	height: 50px;
 	border-style: none;
@@ -13,6 +16,26 @@
 	color: #b3b3b3;
 	cursor: pointer;
 	margin-right: 10%;
+	outline-width: 0;
+}
+/* .bottom__bar {
+	position: absolute;
+	z-index: 1;
+	background-color: white;
+	height: 30px;
+	padding: 5px;
+	width: 250px;
+	left: 10px;
+	top: 460px;
+	opacity: 0.8;
+} */
+#three__dots__button {
+	background-color: white;
+	cursor: pointer;
+	color: #8f8f8f;
+	border-style: none;
+	outline-width: 0;
+	font-size: 20px;
 }
 #contacts__btn {
 	color: skyblue;
@@ -96,13 +119,144 @@
 }
 
 .contacts__container {
-	padding-left: 13px;
+	padding-left: 30px;
 	padding-right: 13px;
 	margin-left: 20px;
 }
+.contact__item {
+	margin-bottom: 5px;
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+}
 
+/*OGECHI SHOUD PREVENT IT FROM OVERFLOWING */
+.contact__list {
+	margin-left: 0;
+	height: 300px;
+	overflow-y: hidden;
+}
+.contact__list:hover {
+	overflow-y: auto;
+}
+/*OGECHI SHOULD MAKE THE IMAGE ROUND*/
+.contact__image {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+.contact__name {
+	font-size: 12px;
+	padding-top: 10px;
+	margin-left: 10px;
+	width: 80%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: block;
+	overflow: hidden;
+}
+.left__bar {
+	position: absolute;
+	top: 130px;
+	left: 20px;
+}
+.left__bar i {
+	font-size: 10px;
+}
+.left__bar__icon {
+	text-align: center;
+	background-color: #e3e3e3;
+	width: 22px;
+	padding-bottom: 2px;
+	border-radius: 50%;
+	margin-bottom: 21px;
+}
+.left__bar__letter__icon {
+	text-align: center;
+	background-color: #e3e3e3;
+	width: 22px;
+
+	padding-bottom: 2px;
+	border-radius: 50%;
+	margin-bottom: 21px;
+}
+.left__bar__icon__divider {
+	position: absolute;
+	height: 350px;
+	width: 1px;
+	left: 10px;
+	z-index: -2;
+	background-color: #e3e3e3;
+}
+.right__bar {
+	width: 6px;
+	height: 60px;
+	position: absolute;
+	left: 260px;
+	font-size: 8px;
+	top: 130px;
+}
+.profile__group {
+	border-style: none;
+	outline-width: 0;
+	background-color: white;
+	font-family: cursive;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+#active {
+	color: skyblue;
+}
+.right__bar a {
+	color: #bdbfbf;
+	text-decoration: none;
+	font-weight: bold;
+}
 .favourites__container {
 	padding-left: 13px;
 	padding-right: 13px;
 	margin-left: 20px;
 }
+
+.footer {
+	opacity: 0.8;
+	background-color: white;
+}
+
+.btn-left {
+	left: 0.4em;
+	position: absolute;
+	bottom: 0.10em;
+	font-size: 15px;
+	border-radius: 100%;
+	
+}
+
+.icons li {
+	margin-top: 3px;
+	height: 7px;
+	
+}	
+
+.plus_bar {
+	font-size: 16px;
+	background-color: red;
+	color: white;
+	padding: 15px;
+	border-radius: 50%;
+	position: absolute;
+	bottom: 0.2em;
+	margin-left: 110px;
+	width: 25px;
+	height: 25px;
+	border-style: none;
+
+}
+
+.plus_icon {
+	position: absolute;
+	left: 20px;
+	font-weight: bold;
+}
+
+        
