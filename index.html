@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="theme.css" />
         <link rel="stylesheet" href= 
 "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        <script src="app.js"></script>
+        
     </head>
     
     <body>    
@@ -15,6 +15,22 @@
             <img src="img/mokup.png" />
         </div>
         <div class="app">
+            <div class="left__bar">
+                <div class="left__bar__icon__divider"></div>
+                <div class="left__bar__icon"><i class="fa fa-user"></i></div>
+                <div class="left__bar__icon"><i class="fa fa-users"></i></div>
+                <div class="left__bar__letter__icon">A</div>
+                
+            </div>
+            <div class="right__bar">
+                <a href="#" id="active">A</a><br><a href="#">B</a><br><a href="#">C</a><br><a href="#">D</a><br><a href="#">E</a><br><a href="#">F</a><br>
+                <a href="#">G</a><br><a href="#">H</a><br><a href="#">I</a><br><a href="#">J</a><br><a href="#">K</a><br>
+                <a href="#">L</a><br><a href="#">M</a><br><a href="#">N</a><br><a href="#">O</a><br>
+                <a href="#">P</a><br><a href="#">Q</a><br><a href="#">R</a><br><a href="#">S</a><br>
+                <a href="#">T</a><br><a href="#">U</a><br><a href="#">V</a><br><a href="#">W</a><br><a href="#">X</a><br><a href="#">Y</a><br>
+                <a href="#">Z</a><br><a href="#">#</a><br>
+                
+            </div>
             <div class="top__bar">
                 <button type="button" class="top__bar__btn" id="contacts__btn">Contacts</button>
                 <button type="button" class="top__bar__btn" id="favourites__btn">Favourites</button>
@@ -24,18 +40,32 @@
                 </div>
             </div>
             <hr class="divider"/>
-            <div class="contact__view__component">       
+            <div class="contact__view__component" id="contact__view__component">       
                 <div class="search__pane">
                     <i class="fa fa-search input-icon"></i>
                     <input placeholder="Search total contacts" id="search" name="search" type="text" class="search__input" />
                 </div>       
                 <div class="contacts__container">
-                    Setup my profile the listeni tips <br/>
-                    Groups    
+                    <div><button type="button" class="profile__group" id="profile__setup__btn">Setup my profile</button></div>
+                    <div><button type="button" class="profile__group" id="groups__btn">Groups</button></div>
+                    <div class="contact__list" id="contact__list">
+                        <!-- List of contacts are to be displayed here -->
+                    </div>
+                    <!-- <div class="bottom__bar">
+                        <div class="bottom__bar__icon">
+                            <button type="button" id="three__dots__button"><i class="fa fa-ellipsis-v"></i></button>
+                        </div>
+                    </div> -->
                 </div>
             </div>
-            <div class="favourites__container">show favourites here</div>
+            <div class="favourites__view__component" id="favourites__view__component">
+                    <div class="favourites__container">Show favourites here</div>
+            </div>
+            
         </div>
+<!-- ------------------------------------SCRIPT------------------------------ --->
+        
+        <script src="app.js"></script>
     </body>
 
 </html>
