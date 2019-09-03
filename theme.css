@@ -1,6 +1,39 @@
 body {
 	font-family: cursive;
 }
+
+/* REFACTOR BY IFEANYI OPERATION: REMOVE */
+.animate {
+	width: 200px;
+	height: 100px;
+	margin-left: 200px;
+	margin-top: 60px;
+	color: skyblue;
+	background-color: white;
+	animation: fadin-out 1s ease-in-out;
+	animation-fill-mode: both;
+	animation-direction: alternate;
+	box-shadow: 0px 0px 4px #8f8f8f;
+	padding: 10px;
+}
+.confirm__animate {
+	font-size: 12px;
+	margin-top: 10px;
+	color: black;
+	font-weight: lighter;
+}
+@keyframes fadin-out {
+	0% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.6;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 .top__bar {
 	height: 50px;
 	border-style: none;
@@ -17,6 +50,7 @@ body {
 	cursor: pointer;
 	margin-right: 10%;
 	outline-width: 0;
+	transition: 1s;
 }
 /* .bottom__bar {
 	position: absolute;
@@ -49,6 +83,7 @@ body {
 	width: 6px;
 	height: 6px;
 	margin-top: 3px;
+	transition: 1.2s;
 }
 
 .contact__status__ball {
@@ -59,7 +94,8 @@ body {
 .search__input {
 	border-style: solid;
 	height: 28px;
-	width: 95%;
+	width: 86%;
+	margin-left: -4px;
 	border-radius: 50px;
 	border-width: 0.1em;
 	border-color: #d6d6d6;
@@ -67,7 +103,9 @@ body {
 	padding-left: 20px;
 	padding-right: 20px;
 }
-
+#contact__view__component {
+	transition: 2s;
+}
 .search__pane {
 	padding-left: 15px;
 	padding-right: 15px;
@@ -85,11 +123,31 @@ body {
 .input-icon {
 	color: #b3b3b3;
 	position: absolute;
-	left: 58px;
+	left: 53px;
 	top: 77px;
 	font-weight: 100;
+	transition: 0.5s;
 }
-
+#select__contact__list {
+	padding-left: 30px;
+	padding-right: 13px;
+	margin-left: -15px;
+	padding-bottom: 50px;
+}
+#select__fav__contact__list {
+	padding-left: 30px;
+	padding-right: 13px;
+	margin-left: -15px;
+	padding-bottom: 50px;
+}
+.input-icon-select-search {
+	color: #b3b3b3;
+	position: absolute;
+	left: 92px;
+	top: 90px;
+	font-weight: 100;
+	transition: 0.5s;
+}
 .mockup {
 	position: absolute;
 	left: 300px;
@@ -102,22 +160,29 @@ body {
 }
 
 .app {
-	width: 250px;
-	height: 500px;
+	width: 268px;
+	height: 540px;
 	position: absolute;
-	left: 460px;
-	top: 15%;
+	left: 466px;
+	top: 89px;
 	z-index: 2;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: white;
 }
 
 .divider {
-	margin-left: 4px;
+	margin-left: 3px;
 	width: 270px;
 	height: 0.01em;
 	opacity: 0.3;
 	background-color: #ebebeb;
 }
-
+[favourite-contact-id] {
+	cursor: pointer;
+}
 .contacts__container {
 	padding-left: 30px;
 	padding-right: 13px;
@@ -129,22 +194,70 @@ body {
 	justify-content: space-between;
 	cursor: pointer;
 }
-
-/*OGECHI SHOUD PREVENT IT FROM OVERFLOWING */
+.favourite__select__contact__item {
+	margin-bottom: 5px;
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+}
+.fav__list__contact__item {
+	margin-bottom: 5px;
+	margin-top: 5px;
+	cursor: pointer;
+}
+.fav__list__contact__image {
+	vertical-align: text-bottom;
+}
+.fav__list__contact__name {
+	font-size: 12px;
+}
+.favourite__list {
+	margin-left: 0;
+	height: 400px;
+	width: 230px;
+	overflow-y: hidden;
+}
+.favourite__list:hover {
+	overflow-y: auto;
+}
+.select__contact__list {
+	margin-left: 0;
+	height: 300px;
+	width: 209px;
+	overflow-y: hidden;
+}
+.select__contact__list:hover {
+	overflow-y: auto;
+}
+.select__fav__contact__list {
+	margin-left: 0;
+	height: 300px;
+	width: 209px;
+	overflow-y: hidden;
+}
+.select__fav__contact__list:hover {
+	overflow-y: auto;
+}
+.fav__title {
+	font-size: 12px;
+	color: #b3b3b3;
+}
 .contact__list {
 	margin-left: 0;
 	height: 300px;
+	margin-bottom: 50px;
 	overflow-y: hidden;
 }
 .contact__list:hover {
 	overflow-y: auto;
 }
-/*OGECHI SHOULD MAKE THE IMAGE ROUND*/
+
 .contact__image {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
 }
+
 .contact__name {
 	font-size: 12px;
 	padding-top: 10px;
@@ -192,7 +305,7 @@ body {
 	width: 6px;
 	height: 60px;
 	position: absolute;
-	left: 260px;
+	left: 256px;
 	font-size: 8px;
 	top: 130px;
 }
@@ -218,25 +331,68 @@ body {
 	margin-left: 20px;
 }
 
-.footer {
-	opacity: 0.8;
+.favourites__footer {
+	position: absolute;
+	z-index: 1;
 	background-color: white;
+	height: 30px;
+	padding: 5px;
+	width: 250px;
+	left: 10px;
+	top: 480px;
+	opacity: 0.8;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.contacts__footer {
+	position: absolute;
+	z-index: 1;
+	background-color: white;
+	height: 30px;
+	padding: 5px;
+	width: 250px;
+	left: 10px;
+	top: 495px;
+	opacity: 0.5;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.favourite__select__footer,
+.delete__select__footer {
+	position: absolute;
+	z-index: 1;
+	background-color: white;
+	height: 30px;
+	padding: 5px;
+	width: 250px;
+	left: 10px;
+	top: 495px;
+	opacity: 0.8;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+#menu__bottom__btn {
+	cursor: pointer;
 }
 
 .btn-left {
-	left: 0.4em;
+	left: -10px;
 	position: absolute;
-	bottom: 0.10em;
-	font-size: 15px;
+	bottom: 0.8em;
+	font-size: 12px;
 	border-radius: 100%;
-	
 }
-
+.contacts-btn-left {
+	left: -9px;
+	position: absolute;
+	bottom: 0.9em;
+	font-size: 12px;
+	border-radius: 100%;
+}
 .icons li {
 	margin-top: 3px;
 	height: 7px;
-	
-}	
+}
 
 .plus_bar {
 	font-size: 16px;
@@ -245,18 +401,463 @@ body {
 	padding: 15px;
 	border-radius: 50%;
 	position: absolute;
-	bottom: 0.2em;
-	margin-left: 110px;
+	bottom: 1em;
+	left: 0.6em;
+	margin-left: 90px;
 	width: 25px;
 	height: 25px;
 	border-style: none;
-
+	opacity: 1;
+	z-index: 3;
+	cursor: pointer;
+	box-shadow: 0px 0px 7px grey;
+}
+.add__fav__bar {
+	font-size: 16px;
+	background-color: green;
+	color: white;
+	padding: 15px;
+	border-radius: 50%;
+	position: absolute;
+	bottom: 0.2em;
+	margin-left: 90px;
+	width: 25px;
+	height: 25px;
+	border-style: none;
+	opacity: 1;
+	z-index: 3;
+	cursor: pointer;
+	box-shadow: 0px 0px 7px grey;
+}
+.select_bar {
+	font-size: 16px;
+	background-color: red;
+	color: white;
+	padding: 15px;
+	border-radius: 50%;
+	position: absolute;
+	bottom: 1.2em;
+	margin-left: 90px;
+	width: 25px;
+	height: 25px;
+	border-style: none;
+	opacity: 1;
+	z-index: 3;
+	cursor: pointer;
+	box-shadow: 0px 0px 7px grey;
+}
+.select__favourite__bar {
+	font-size: 16px;
+	background-color: green;
+	color: white;
+	padding: 15px;
+	border-radius: 50%;
+	position: absolute;
+	bottom: 0.6em;
+	margin-left: 90px;
+	width: 25px;
+	height: 25px;
+	border-style: none;
+	opacity: 1;
+	z-index: 3;
+	cursor: pointer;
+	box-shadow: 0px 0px 7px grey;
 }
 
-.plus_icon {
+.trash_icon {
 	position: absolute;
-	left: 20px;
+	left: 22px;
 	font-weight: bold;
 }
+.check_icon {
+	position: absolute;
+	left: 21px;
+	font-weight: bold;
+}
+.plus_icon {
+	position: absolute;
+	left: 21px;
+	font-weight: bold;
+}
+.add_fav_icon {
+	position: absolute;
+	left: 21px;
+	font-weight: bold;
+}
+.delete__contact__component {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 268px;
+	height: 540px;
+	overflow: hidden;
+	background-color: white;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	z-index: -1;
+}
+.select__favourite__contact__component {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 268px;
+	height: 540px;
+	overflow: hidden;
+	background-color: white;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	z-index: -1;
+}
+.delete__top__bar {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+.select__fav__top__bar {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+#all__checkbox {
+	/* CUSTORMISE */
+}
+.selected__details {
+	display: inline-block;
+	width: 60%;
+	text-align: center;
+}
+#back__delete__btn,
+#return__to__fav__btn {
+	background-color: white;
+	border-style: none;
+	outline-width: 0;
+	cursor: pointer;
+}
+.edit__contact__component {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 268px;
+	height: 540px;
+	overflow: hidden;
+	background-color: white;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	z-index: -1;
+}
 
-        
+.edit__contact__component:hover {
+	overflow-y: auto;
+}
+.cancel__btn,
+.save__contact__btn {
+	display: inline;
+	border-style: none;
+	border-radius: 5px;
+	background: inherit;
+	color: #b3b3b3;
+	cursor: pointer;
+	margin-right: 10%;
+	outline-width: 0;
+	font-size: 16px;
+}
+.date {
+	border-bottom-style: solid !important;
+	padding-bottom: 0px !important;
+}
+.birthday {
+	font-size: 12px;
+	margin-top: 16px;
+}
+.birthday__item {
+	width: 60px;
+}
+.edit__divider {
+	margin-left: -5px;
+	width: 267px;
+	height: 0.01em;
+	opacity: 0.3;
+	background-color: #ebebeb;
+}
+.select__divider {
+	margin-left: -5px;
+	width: 267px;
+	height: 0.01em;
+	opacity: 0.3;
+	background-color: #ebebeb;
+}
+.edit__top__bar {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+.info__group__name {
+	font-size: 12px;
+	margin-top: 16px;
+	text-align: left;
+}
+
+.contact__image__pane {
+	padding-left: 69px;
+	margin-bottom: 20px;
+}
+.contact__image {
+	width: 115px;
+	height: 100px;
+	cursor: pointer;
+}
+.info__item {
+	display: flex;
+	justify-content: space-between;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 1px;
+	box-shadow: 0px 1px 1px #dedede;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	height: 50px;
+	border-top-style: solid;
+	border-top-width: 0.01em;
+	border-top-color: #ededed;
+}
+.add__item__btn,
+.delete__contact__btn {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#add_new_item {
+	width: 100%;
+	height: 40px;
+	background-color: grey;
+	border-style: none;
+	color: white;
+	color: white;
+	text-align: center;
+	font-family: cursive;
+	cursor: pointer;
+	outline-width: 0;
+}
+#delete__contact {
+	width: 100%;
+	height: 40px;
+	background-color: red;
+	border-style: none;
+	color: white;
+	text-align: center;
+	font-family: cursive;
+	margin-bottom: 50px;
+	cursor: pointer;
+	outline-width: 0;
+}
+/* ASK IFEANYI TO REFACTOR LINE 377-388 . OPERATION:REMOVE*/
+.info__input__icon,
+.info__input__icon__2 {
+	display: inline-block;
+	margin-top: 15px;
+	background-color: grey;
+	color: white;
+	font-size: 9px;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+}
+.info__input__icon__delete {
+	display: inline-block;
+	margin-top: 15px;
+	background-color: red;
+	border-style: none;
+	color: white;
+	font-size: 9px;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	outline-width: 0;
+	padding: 0.1em;
+}
+.image__menu {
+	position: absolute;
+	left: 20px;
+	margin-right: 20px;
+	top: 60px;
+	width: 220px;
+	height: 90px;
+	background-color: white;
+	padding: 10px;
+	box-shadow: 0px 0px 5px #c2c2c2;
+}
+#take__photo__btn,
+#choose__image__btn {
+	background: inherit;
+	border-style: none;
+	color: grey;
+	font-family: cursive;
+	cursor: pointer;
+	outline-width: 0;
+}
+#profile__pic__input {
+	opacity: 0;
+}
+.info__input__icon__name,
+.info__input__icon__email {
+	display: inline-block;
+	margin-top: 15px;
+	background-color: grey;
+	border-style: none;
+	color: white;
+	font-size: 9px;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	outline-width: 0;
+	padding: 0.1em;
+}
+
+/* ASK IFEANYI TO REFACTOR LINES 419 TO 431 OPERATION:REMOVE */
+.info__input__icon i {
+	position: absolute;
+	font-weight: 50;
+	left: 24.2em;
+	top: 196px;
+}
+.info__input__icon__2 i {
+	position: absolute;
+	font-weight: 50;
+	left: 24.2em;
+	top: 257px;
+}
+#mobile {
+	width: 40%;
+}
+#work,
+#home,
+#assistant {
+	width: 65%;
+}
+.info__item__label {
+	font-size: 12px;
+	margin-top: 17px;
+}
+.info__input__item {
+	border-style: none;
+	outline-width: 0px;
+	width: 90%;
+	vertical-align: text-top;
+}
+.info__input__item::placeholder {
+	font-family: cursive;
+	font-size: 12px;
+	color: #c4c4c4;
+}
+.others {
+	box-shadow: none;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.clear__margin {
+	margin-bottom: 0;
+}
+.input__item__group {
+	box-shadow: 0px 1px 1px #dedede;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+/*------------------------SCROLL BAR STYLES------------------------*/
+.contact__list::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+
+.contact__list::-webkit-scrollbar {
+	width: 3px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+}
+
+.contact__list::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #555;
+}
+.select__contact__list::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+
+.select__contact__list::-webkit-scrollbar {
+	width: 3px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+}
+
+.select__contact__list::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #555;
+}
+.favourite__list::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+
+.favourite__list::-webkit-scrollbar {
+	width: 3px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+}
+
+.favourite__list::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #555;
+}
+.select__fav__contact__list::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+
+.select__fav__contact__list::-webkit-scrollbar {
+	width: 3px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+}
+
+.select__fav__contact__list::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #555;
+}
+.edit__contact__component::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #f5f5f5;
+}
+
+.edit__contact__component::-webkit-scrollbar {
+	width: 3px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+}
+
+.edit__contact__component:-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #555;
+}

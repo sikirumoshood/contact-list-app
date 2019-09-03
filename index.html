@@ -10,6 +10,14 @@
     </head>
     
     <body>    
+        <div class="animate">
+            <div class="content">
+                    <div class="confirm__title">Delete contact(s)</div>
+            <div class="confirm__animate">Delete the selected contact(s)?</div>
+
+            </div>
+            
+        </div>
         <div class="mockup">
             <img src="img/mokup.png" />
         </div>
@@ -18,17 +26,15 @@
                 <div class="left__bar__icon__divider"></div>
                 <div class="left__bar__icon"><i class="fa fa-user"></i></div>
                 <div class="left__bar__icon"><i class="fa fa-users"></i></div>
-                <div class="left__bar__letter__icon">A</div>
-                
+                <div class="left__bar__letter__icon">A</div>              
             </div>
             <div class="right__bar">
-                <a href="#" id="active">A</a><br><a href="#">B</a><br><a href="#">C</a><br><a href="#">D</a><br><a href="#">E</a><br><a href="#">F</a><br>
+                <a href="#a-contact" id="active">A</a><br><a href="#">B</a><br><a href="#">C</a><br><a href="#">D</a><br><a href="#">E</a><br><a href="#">F</a><br>
                 <a href="#">G</a><br><a href="#">H</a><br><a href="#">I</a><br><a href="#">J</a><br><a href="#">K</a><br>
                 <a href="#">L</a><br><a href="#">M</a><br><a href="#">N</a><br><a href="#">O</a><br>
                 <a href="#">P</a><br><a href="#">Q</a><br><a href="#">R</a><br><a href="#">S</a><br>
                 <a href="#">T</a><br><a href="#">U</a><br><a href="#">V</a><br><a href="#">W</a><br><a href="#">X</a><br><a href="#">Y</a><br>
-                <a href="#">Z</a><br><a href="#">#</a><br>
-                
+                <a href="#">Z</a><br><a href="#">#</a><br>             
             </div>
             <div class="top__bar">
                 <button type="button" class="top__bar__btn" id="contacts__btn">Contacts</button>
@@ -42,7 +48,7 @@
             <div class="contact__view__component" id="contact__view__component">       
                 <div class="search__pane">
                     <i class="fa fa-search input-icon"></i>
-                    <input placeholder="Search total contacts" id="search" name="search" type="text" class="search__input" />
+                    <input placeholder="Search total contacts" id="contact__item__search"  type="text" class="search__input" />
                 </div>       
                 <div class="contacts__container">
                     <div><button type="button" class="profile__group" id="profile__setup__btn">Setup my profile</button></div>
@@ -50,37 +56,210 @@
                     <div class="contact__list" id="contact__list">
                         <!-- List of contacts are to be displayed here -->
                     </div>
-                    <!-- <div class="bottom__bar">
-                        <div class="bottom__bar__icon">
-                            <button type="button" id="three__dots__button"><i class="fa fa-ellipsis-v"></i></button>
-                        </div>
-                    </div> -->
                 </div>
             </div>
-
-            <div class="favourites__container">show favourites here</div>
-
-            <div class="footer">
-                <ul class="icons btn-left">
+            <div class="contacts__footer ">
+                <ul id="menu__bottom__btn" class="icons contacts-btn-left">
                     <li></li>
                     <li></li>
                     <li></li>
                 </ul>
-
-                <div class="plus_bar">
-                    <span class="plus_icon">&#10011</span>
-                </div>
-                
-        </div>
-
-            <div class="favourites__view__component" id="favourites__view__component">
-                    <div class="favourites__container">Show favourites here</div>
+                <div class="plus_bar" id="add__new__contact__btn">
+                    <span class="plus_icon"><i class="fa fa-plus"></i></span>
+                </div>   
             </div>
+            <div class="favourites__view__component" id="favourites__view__component">
+                    <div class="favourites__container">
+                        <span class="fav__title">My favourites</span>
+                        <div class="favourite__list" id="favourite__list">
+                            
+                        </div>
+                    </div>
+
+                    <div class="favourites__footer">
+                        <ul id="menu__bottom__btn" class="icons btn-left">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <div class="add__fav__bar" id="add__fav__bar">
+                            <span class="add_fav_icon"><i class="fa fa-plus"></i> </span>
+                        </div>   
+                    </div>
+            </div>
+            <!-- TO BE IMPLEMENTED BY OGECHI -->
+            <!-- <div class="contact__information__component" id="contact__information__component">
+                    <div class="info__container">Show contact info here</div>
+            </div> -->
             
+            <!-- ----Edit component will be used for both edit, add new and save-->
+            <div class="edit__contact__component" id="edit__contact__component">
+                    <form id="contact__form">
+                        <div class="edit__top__bar">
+                            <button type="button" class="cancel__btn" id="cancel__edit__btn"><i class="fa fa-times"></i></button>
+                            <span class="title" id="title">Edit contact</span>
+                            <button type="submit" class="save__contact__btn"><i class="fa fa-check"></i></button>
+                            
+                        </div>
+                        
+                        <hr class="edit__divider"/>
+                        <div class="edit__info__container">
+                            <div class="contact__image__pane">
+                                <img src="img/contact.png" class="contact__image" id="profile__contact__image">
+                                <div id="image__menu" class="image__menu">
+                                    <div class="image__menu__option">
+                                        <button type="button" id="take__photo__btn" >Take photo</button type="button" >
+                                    </div>
+                                    <div class="image__menu__option">
+                                            <input type="file" name="profile__pic" id="profile__pic__input">
+                                            <button  type="button" id="choose__image__btn">Choose photo</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info__item">
+                                <input class="info__input__item" type="email" name="email" placeholder="Email">
+                                <button type="button" class="info__input__icon__email"><i class="fa fa-chevron-up"></i></button type="button">
+                            </div>
+                            <div class="input__item__group">
+    
+    
+                                <div class="info__item others">
+                                    <input class="info__input__item clear__margin" type="text" name="name" placeholder="Name">
+                                    <button type="button" class="info__input__icon__name"><i class="fa fa-chevron-down"></i></button type="button">
+                                </div>
+                                <div class="info__item others">
+                                        <input class="info__input__item" type="text" name="first_name" placeholder="First name">
+                                </div>
+                                <div class="info__item others">
+                                        <input class="info__input__item" type="text" name="middle_name" placeholder="Middle name">
+                                </div>
+                                <div class="info__item others">
+                                    <input class="info__input__item" type="text" name="last_name" placeholder="Last name">
+                                </div>
+                                <div class="info__item others">
+                                        <input class="info__input__item" type="text" name="name_suffix" placeholder="Name suffix">
+                                </div>
+                                <div class="info__item others">
+                                    <input class="info__input__item" type="text" name="company" placeholder="Company">
+                                </div>
+                                <div class="info__item others">
+                                    <input class="info__input__item" type="text" name="title" placeholder="Title">
+                                </div>
+    
+                            </div>
+                            <div class="input__item__group">
+    
+                                    <div class="info__item others">
+                                        <span class="info__item__label">Mobile</span>
+                                        <input class="info__input__item clear__margin" type="text" id="mobile" name="mobile" placeholder="Mobile" required>
+                                        <button type="button" class="info__input__icon__delete"><i class="fa fa-minus"></i></button>
+                                    </div>
+                                    <div class="info__item others">
+                                        <span class="info__item__label">Work</span>
+                                        <input class="info__input__item" type="text" id="work" name="work" placeholder="Phone">
+                                    </div>
+                                    <div class="info__item others">
+                                            <span class="info__item__label">Home</span>
+                                        <input class="info__input__item" type="email" id="home" name="home" placeholder="Email">
+                                    </div>
+        
+                            </div>
+                            <div class="info__item">
+                                    <input class="info__input__item date" type="date" name="birthday_date" placeholder="Date">         
+                            </div>
+                            <div class="info__item birthday__item">
+                                    <span class="birthday">Birthday</span>                
+                            </div>
+                            <div class="info__item ">
+                                    <span class="info__group__name">Group name</span>                
+                            </div>
+                            <div class="input__item__group">
+                                    <div class="info__item others">
+                                        <span class="info__item__label">Assistant</span>
+                                        <input class="info__input__item" type="text" id="assistant" name="assistant" placeholder="Relationship">
+                                    </div>
+        
+                            </div>
+                            <div class="add__item__btn">
+                                    <button type="button" class="info__group__name" id="add_new_item">Add more items</button>                
+                            </div>
+                            <div class="delete__contact__btn">
+                                    <button type="button" class="info__group__name" id="delete__contact">Delete</button>                
+                            </div>                          
+                        </div>
+                    </form>      
+            </div>
+            <div class="delete__contact__component" id="delete__contact__component">
+                    <div class="delete__container">
+                        <div class="delete__top__bar">
+                            <button type="button"  id="back__delete__btn" ><i class="fa fa-long-arrow-left"></i></button>
+                            <span class="delete__selected__details">0 Selected</span>
+                            <input type="checkbox" value="all" id="all__checkbox">
+                        </div>
+                        <hr class="select__divider"/>
+                        <div class="search__pane">
+                            <i class="fa fa-search input-icon-select-search"></i>
+                            <input placeholder="Search" id="delete__contact__search" name="search__to__select" type="text" class="search__input" />
+                        </div> 
+                        <div class="select__contact__list" id="select__contact__list">
+                                <!--Contacts are to be displayed here  -->
+                        </div>
+                        <div class="right__bar">
+                                <a href="#a-contact" id="active">A</a><br><a href="#">B</a><br><a href="#">C</a><br><a href="#">D</a><br><a href="#">E</a><br><a href="#">F</a><br>
+                                <a href="#">G</a><br><a href="#">H</a><br><a href="#">I</a><br><a href="#">J</a><br><a href="#">K</a><br>
+                                <a href="#">L</a><br><a href="#">M</a><br><a href="#">N</a><br><a href="#">O</a><br>
+                                <a href="#">P</a><br><a href="#">Q</a><br><a href="#">R</a><br><a href="#">S</a><br>
+                                <a href="#">T</a><br><a href="#">U</a><br><a href="#">V</a><br><a href="#">W</a><br><a href="#">X</a><br><a href="#">Y</a><br>
+                                <a href="#">Z</a><br><a href="#">#</a><br>             
+                        </div>
+                    </div>
+                    <div class="delete__select__footer">
+                            <ul id="menu__bottom__btn" class="icons btn-left">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <div class="select_bar" id="delete__selected__contacts__btn">
+                                <span class="trash_icon"><i class="fa fa-trash-o"></i></span>
+                            </div>   
+                    </div>
+            </div>
+           
+            <div class="select__favourite__contact__component" id="select__favourite__contact__component">
+                    <div class="select__favourite__container">
+                        <div class="select__fav__top__bar">
+                            <button type="button" id="return__to__fav__btn"><i class="fa fa-long-arrow-left"></i></button>
+                            <span class="favourite__selected__details">0 Selected</span>
+                            <input type="checkbox" value="all" id="favourite__all__checkbox">
+                        </div>
+                        <hr class="select__divider"/>
+                        <div class="search__pane">
+                            <i class="fa fa-search input-icon-select-search"></i>
+                            <input placeholder="Search" id="favourite__contact__search"  type="text" class="search__input" />
+                        </div> 
+                        <div class="select__fav__contact__list" id="select__fav__contact__list">
+                             <!--Contacts are to be displayed here  -->
+                        </div>
+                        <div class="right__bar">
+                                <a href="#a-contact" id="active">A</a><br><a href="#">B</a><br><a href="#">C</a><br><a href="#">D</a><br><a href="#">E</a><br><a href="#">F</a><br>
+                                <a href="#">G</a><br><a href="#">H</a><br><a href="#">I</a><br><a href="#">J</a><br><a href="#">K</a><br>
+                                <a href="#">L</a><br><a href="#">M</a><br><a href="#">N</a><br><a href="#">O</a><br>
+                                <a href="#">P</a><br><a href="#">Q</a><br><a href="#">R</a><br><a href="#">S</a><br>
+                                <a href="#">T</a><br><a href="#">U</a><br><a href="#">V</a><br><a href="#">W</a><br><a href="#">X</a><br><a href="#">Y</a><br>
+                                <a href="#">Z</a><br><a href="#">#</a><br>             
+                            </div>
+                    </div>
+                    <div class="favourite__select__footer" id="faourite__select__save__btn">
+                            <div class="select__favourite__bar" id="select__favourite__bar">
+                                <span class="check_icon"><i class="fa fa-check"></i></span>
+                            </div>   
+                    </div>
+            </div>
+           
         </div>
 <!-- ------------------------------------SCRIPT------------------------------ --->
         
-      <script src="app.js"></script>
+    <script src="app.js"></script>
     </body>
 
 </html>
