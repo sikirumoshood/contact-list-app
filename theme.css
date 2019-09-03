@@ -159,6 +159,7 @@ body {
 	width: 600px;
 }
 
+
 .app {
 	width: 268px;
 	height: 540px;
@@ -284,11 +285,11 @@ body {
 	border-radius: 50%;
 	margin-bottom: 21px;
 }
+
 .left__bar__letter__icon {
 	text-align: center;
 	background-color: #e3e3e3;
 	width: 22px;
-
 	padding-bottom: 2px;
 	border-radius: 50%;
 	margin-bottom: 21px;
@@ -377,7 +378,7 @@ body {
 
 .btn-left {
 	left: -10px;
-	position: absolute;
+	position: absolute;	
 	bottom: 0.8em;
 	font-size: 12px;
 	border-radius: 100%;
@@ -393,7 +394,6 @@ body {
 	margin-top: 3px;
 	height: 7px;
 }
-
 .plus_bar {
 	font-size: 16px;
 	background-color: red;
@@ -556,6 +556,164 @@ body {
 	z-index: -1;
 }
 
+
+/* contact profile */
+
+.contact_profile {
+	position: absolute;
+	top: -16px;
+	background-color: white;
+	font-size: 10px;
+	width: 239px;
+	height: 424px;
+	padding: 60px 0px;
+	padding-left: 10px;
+	padding-right: 20px;
+	margin-left: 5px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+
+
+}
+
+ .contact_info_details {
+	 margin-top: 32px;
+	 width: 230px;
+	 padding-right: 10px;
+	 padding-left: 10px;
+
+ }
+
+ .contact_name {
+	background-image: linear-gradient(to bottom right, red, yellow);
+	width: 270px;
+	height: 200px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	padding-top: 50px;
+	margin-top: -60px;
+	margin-left: -10px;
+	font-style: italic;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.contact_name h1 {
+	font-size:300px;
+	color: orangered;
+	margin-top: -110px;
+	margin-left: 60px;	
+}
+
+.contact_name_info {
+	position: absolute;
+	top:10em;
+	font-size: 17px;
+	margin-left: 50px;
+	color: white;
+}
+
+#name_id {
+	margin-left: 40px;
+}
+
+.favorite_bar {
+	position: absolute;
+	width: 43px;
+	height: 43px;
+	border-radius: 50%;
+	background-color: white;
+	color: rgb(161, 158, 158);
+	text-align:center;
+	font-size: 16px;
+	margin-left: 98px;
+	top:230px;
+	box-shadow: 0px 0px 3px gray;
+	
+} 
+.favorite_bar i {
+	position: absolute;
+	top:0.8em;
+	left: 0.9em;
+	
+}
+.group_user {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.phone_details,
+.group_info,
+.ringtone_info,
+.telegram_details {
+	display: flex;
+	justify-content: space-between;
+	font-size: 15px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.phone_details {
+	margin-top: 45px;
+}
+
+.group_info i,
+.ringtone_info i,
+.phone_details i {
+	color: orangered;
+}
+
+.chevron_icon_right {
+	border-radius: 50%;
+	background-color: white;
+	border-style: solid;
+	border-width: 0.1em;
+	color:#b3b3b3;
+}
+/* refactor by ifeanyi 348-354,operation should be removed */
+/* .phone_details span {
+	display: inline-block;
+	marg
+in: 10px;
+	font-size: 12px;
+} */
+
+ .align_left {
+	text-align: left;
+	width: 70%;
+	margin-top: 5px;
+}
+
+.group_user {
+	text-align: left;
+	margin-left: -1px;
+	color:rgb(148, 137, 137);
+}
+
+.telegram_details i{
+	color: blue;
+}
+
+.telegram_left{
+	width: 85%;
+	text-align: left;
+}
+.group_button_bar {
+font-size: 20px;
+display: flex;
+justify-content: space-between;
+margin-top: 40px;
+}
+
+#ringtone_info_btn_icon,
+#group_info_btn_icon {
+	color: #b3b3b3;
+	outline-width: 0;
+	outline-style: none;
+	cursor: pointer;
+
+}
 .edit__contact__component:hover {
 	overflow-y: auto;
 }

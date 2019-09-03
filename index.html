@@ -5,8 +5,7 @@
         <title>Contact List App</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="theme.css" />
-        <link rel="stylesheet" href= 
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     </head>
     
     <body>    
@@ -20,7 +19,7 @@
         </div>
         <div class="mockup">
             <img src="img/mokup.png" />
-        </div>
+        </div> 
         <div class="app">
             <div class="left__bar">
                 <div class="left__bar__icon__divider"></div>
@@ -34,8 +33,11 @@
                 <a href="#">L</a><br><a href="#">M</a><br><a href="#">N</a><br><a href="#">O</a><br>
                 <a href="#">P</a><br><a href="#">Q</a><br><a href="#">R</a><br><a href="#">S</a><br>
                 <a href="#">T</a><br><a href="#">U</a><br><a href="#">V</a><br><a href="#">W</a><br><a href="#">X</a><br><a href="#">Y</a><br>
-                <a href="#">Z</a><br><a href="#">#</a><br>             
-            </div>
+                <a href="#">Z</a><br><a href="#">#</a><br> 
+                
+            </div> 
+
+           
             <div class="top__bar">
                 <button type="button" class="top__bar__btn" id="contacts__btn">Contacts</button>
                 <button type="button" class="top__bar__btn" id="favourites__btn">Favourites</button>
@@ -54,16 +56,62 @@
                     <div><button type="button" class="profile__group" id="profile__setup__btn">Setup my profile</button></div>
                     <div><button type="button" class="profile__group" id="groups__btn">Groups</button></div>
                     <div class="contact__list" id="contact__list">
-                        <!-- List of contacts are to be displayed here -->
-                    </div>
+                        <!-- List of contacts are to be displayed here-->
+                    </div> 
                 </div>
             </div>
+
             <div class="contacts__footer ">
                 <ul id="menu__bottom__btn" class="icons contacts-btn-left">
                     <li></li>
                     <li></li>
                     <li></li>
                 </ul>
+          
+           </div>
+
+        <!-- contact profile -->
+        <div class="contact_profile">
+            <div class="contact_name">
+                    <h1>A</h1>
+            </div>
+            <div class="contact_name_info">
+                    <span id="name_id">Andrea</span>
+                    <span>Andrea23@gmail.com</span>
+            </div>
+            <div class="favorite_bar">
+                <span><i class="fa fa-star"></i></span>
+            </div>
+            <div class="contact_info_details">
+                <div class="phone_details">
+                    <span><i class="fa fa-phone"></i></span> 
+                    <span class="align_left">080786432</span>
+                    <span><i class="fa fa-envelope"></i></span>
+                </div>
+                <div class="telegram_details">
+                        <span class=""><i class="fa fa-send"></i></span> 
+                        <span class="telegram_left">080786432</span>
+                </div>
+
+                <div class="group_user">
+                    <h4> Groups & Ringtone</h4>
+                </div>
+                <div class="group_info">
+                     <span><i class="fa fa-group"></i></span>
+                    <span class="align_left">no group</span>
+                    <button type="button" class="chevron_icon_right" id="group_info_btn"><i class="fa fa-chevron-right" id="group_info_btn_icon"></i></button>
+                </div>
+                <div class="ringtone_info">
+                     <span><i class="fa fa-bell"></i></span>
+                     <span class="align_left">Default Ringtone </span>
+                     <button type="button" class="chevron_icon_right" id="ringtone_info_btn"><i class="fa fa-chevron-right" id="ringtone_info_btn_icon"></i></button>
+                </div>
+            </div>
+                <div class="group_button_bar">
+                    <span><i class="fa fa-ellipsis-v"></i></span>
+                    <span><i class="fa fa-share-alt"></i></span>
+                    <span><i class="fa fa-pencil"></i></span>
+                </div>
                 <div class="plus_bar" id="add__new__contact__btn">
                     <span class="plus_icon"><i class="fa fa-plus"></i></span>
                 </div>   
@@ -255,10 +303,9 @@
                             </div>   
                     </div>
             </div>
-           
+
         </div>
 <!-- ------------------------------------SCRIPT------------------------------ --->
-        
     <script src="app.js"></script>
     </body>
 
