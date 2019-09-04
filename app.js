@@ -5,77 +5,78 @@ function ContactListApp() {
 				id    : 0,
 				name  : 'Sikiru Moshood',
 				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
+				phone : '+2348178573504',
+				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED,
 			},
-            {
+			{
 				id    : 1,
 				name  : 'Miss Ogechi',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
+				email : 'ogechi@gmail.com',
+				phone : '+23498765421',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
-            {
+			{
 				id    : 2,
 				name  : 'Mr Ifeanyi',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
+				email : 'ifeanyi@gmail.com',
+				phone : '+23409876543',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
-            {
+			{
 				id    : 3,
 				name  : 'Engineer Joseph',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
+				email : 'ejoseph@gmail.com',
+				phone : '+23476564311',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
-            {
+			{
 				id    : 4,
 				name  : 'Miss Maria',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
+				email : 'mmaria@gmail.com',
+				phone : '+23490654311',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
-            {
+			{
 				id    : 5,
 				name  : 'Samuel Adeyemo Salako',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
+				email : 'sasalako@gmail.com',
+				phone : '+2348145679087',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
-            {
+			{
 				id    : 6,
 				name  : 'Catherine Angel',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
+				email : 'cangel@gmail.com',
+				phone : '+2348098765422',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
-            {
+			{
 				id    : 7,
 				name  : 'Anabel Simon',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
+				email : 'asimon@gmail.com',
+				phone : '+2348113456778',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
-            {
+			{
 				id    : 8,
 				name  : 'Damilola David',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348166473504',
+				email : 'ddavid@gmail.com',
+				phone : '+23490567843',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
-            {
+			{
 				id    : 9,
 				name  : 'Rashidat Mahmud',
-				email : 'sikirumoshood@gmail.com',
+				email : 'rmahmud@gmail.com',
 				phone : '+2348166473504',
 				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
-			},
+			}
 		],
 		groups     : [ 'Company', 'Family', 'Friends' ],
 		phoneTypes : [ 'Mobile', 'Work', 'home' ],
-		favourites : [ 0 ],
-		selected   : []
+		favourites : [ 0, 1, 2 ],
+		selected   : [],
+		defaultPic : 'img/pic-1.jpg'
 	};
 
 	const parent = this;
@@ -106,7 +107,7 @@ function ContactListApp() {
 			this.addOrRemoveFromSelected(e.detail.id, 'REMOVE');
 			this.UI.updateSelectedStatus();
 		});
-        window.addEventListener('deleteContactSelected', (e) => {
+		window.addEventListener('deleteContactSelected', (e) => {
 			console.log('Event captured');
 			this.addOrRemoveFromSelected(e.detail.id, 'ADD');
 			this.UI.updateDeleteSelectedStatus();
@@ -117,61 +118,131 @@ function ContactListApp() {
 			this.UI.updateDeleteSelectedStatus();
 		});
 
+		//TO BE REFACTORED BY IFEANYI
+
 		//@Bind Contacts and favourite btn click events;
-        let saveSelectedFavBtn = document.querySelector('#faourite__select__save__btn');
-        saveSelectedFavBtn.addEventListener('click', ()=> {
-            //Save the contacts  selected as favourites
-            this.saveSelectedFavourites();
-            this.clearSelected();
-            this.UI.showFavouritesView();
-        });
-        
-        let deleteSelectedBtn = document.querySelector('#delete__selected__contacts__btn');
-        deleteSelectedBtn.addEventListener('click',()=>{
-            this.deleteSelectedContacts();
-            this.clearSelected();
-            this.UI.showUpdatedContactsView();
-        })
-        
-        
+		//        let contactListInfoItem = document.querySelectorAll('[contact__info__id]');
+		//         for (let i=0; i<contactListInfoItem.length; ++i ){
+		//             contactListInfoItem[i].addEventListener('click', ()=>{
+		//                 this.UI.showContactInformationView(contactListInfoItem[i].getAttribute('contact__info__id'))
+		//             })
+		//         }
+
+		let removeNumberBtn = document.querySelector('.info__input__icon__delete');
+		removeNumberBtn.addEventListener('click', () => {
+			let mobileInput = document.querySelector('#mobile');
+			mobileInput.focus();
+			mobileInput.value = '';
+		});
+		document.querySelector('#toggle__name').addEventListener('click', (e) => {
+			this.UI.toggleNames();
+		});
+		let imagePopUpBtn = document.querySelector('#cancel__image');
+		imagePopUpBtn.addEventListener('click', () => {
+			this.UI.hideImageMenu();
+		});
+		let form = document.querySelector('#contact__form');
+
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			let data = {};
+			let formData = new FormData(form);
+			for (let [ key, value ] of formData.entries()) {
+				data[key] = value;
+			}
+			data.pic = document.querySelector('#profile__contact__image').src;
+			console.log(data);
+		});
+
+		let favMenuBtn = document.querySelector('#fav__menu__bottom__btn');
+		favMenuBtn.addEventListener('click', () => {
+			let popupComponent = document.querySelector('#fav__bottom__menu');
+			if (popupComponent.classList.contains('pop__up')) {
+				popupComponent.classList.remove('pop__up');
+			} else {
+				popupComponent.classList.add('pop__up');
+			}
+		});
+
+		let contactMenuBtn = document.querySelector('#contact__menu__bottom__btn');
+		contactMenuBtn.addEventListener('click', () => {
+			let popupComponent = document.querySelector('#contacts__bottom__menu');
+			if (popupComponent.classList.contains('pop__up')) {
+				popupComponent.classList.remove('pop__up');
+			} else {
+				popupComponent.classList.add('pop__up');
+			}
+		});
+
+		let removeFavOptionBtn = document.querySelector('#remove__fav__option__btn');
+		removeFavOptionBtn.addEventListener('click', () => {
+			//
+		});
+		let deleteContactOptionBtn = document.querySelector('#delete__contact__option__btn');
+		deleteContactOptionBtn.addEventListener('click', () => {
+			this.UI.showDeleteContactsView();
+			let delOption = document.querySelector('#contacts__bottom__menu');
+			if (delOption.classList.contains('pop__up')) {
+				delOption.classList.remove('pop__up');
+			}
+		});
+		let profileSetupBtn = document.querySelector('#profile__setup__btn');
+		profileSetupBtn.addEventListener('click', () => {
+			this.UI.showEditComponentView('profile');
+		});
+		let saveSelectedFavBtn = document.querySelector('#faourite__select__save__btn');
+		saveSelectedFavBtn.addEventListener('click', () => {
+			//Save the contacts  selected as favourites
+			this.saveSelectedFavourites();
+			this.clearSelected();
+			this.UI.updateSelectedStatus();
+			this.UI.showFavouritesView();
+		});
+
+		let deleteSelectedBtn = document.querySelector('#delete__selected__contacts__btn');
+		deleteSelectedBtn.addEventListener('click', () => {
+			this.deleteSelectedContacts();
+			this.clearSelected();
+			this.UI.updateDeleteSelectedStatus();
+			this.UI.showUpdatedContactsView();
+		});
+
 		let allCheckbox = document.querySelector('#favourite__all__checkbox');
 		allCheckbox.addEventListener('change', (e) => {
 			let favContacts = document.querySelectorAll('[favourite-contact-id]');
 			if (e.target.checked) {
-				favContacts.forEach(checkBox => {
-                    checkBox.checked = true;
-                    this.emit('favouriteContactSelected', 
-                         {
-				                id : checkBox.getAttribute('favourite-contact-id')
-				            });
-                });
+				favContacts.forEach((checkBox) => {
+					checkBox.checked = true;
+					this.emit('favouriteContactSelected', {
+						id : checkBox.getAttribute('favourite-contact-id')
+					});
+				});
 			} else {
-				favContacts.forEach(checkBox => { 
-                    checkBox.checked = false;
-                    this.emit('favouriteContactUnSelected', {
-								id : checkBox.getAttribute('favourite-contact-id')
-							});
-                });
+				favContacts.forEach((checkBox) => {
+					checkBox.checked = false;
+					this.emit('favouriteContactUnSelected', {
+						id : checkBox.getAttribute('favourite-contact-id')
+					});
+				});
 			}
 		});
-        let deleteAllCheckbox = document.querySelector('#all__checkbox');
+		let deleteAllCheckbox = document.querySelector('#all__checkbox');
 		deleteAllCheckbox.addEventListener('change', (e) => {
 			let deleteContacts = document.querySelectorAll('[delete-contact-id]');
 			if (e.target.checked) {
-				deleteContacts.forEach(checkBox => {
-                    checkBox.checked = true;
-                    this.emit('deleteContactSelected', 
-                         {
-				                id : checkBox.getAttribute('delete-contact-id')
-				            });
-                });
+				deleteContacts.forEach((checkBox) => {
+					checkBox.checked = true;
+					this.emit('deleteContactSelected', {
+						id : checkBox.getAttribute('delete-contact-id')
+					});
+				});
 			} else {
-				deleteContacts.forEach(checkBox => { 
-                    checkBox.checked = false;
-                    this.emit('deleteContactUnSelected', {
-								id : checkBox.getAttribute('delete-contact-id')
-							});
-                });
+				deleteContacts.forEach((checkBox) => {
+					checkBox.checked = false;
+					this.emit('deleteContactUnSelected', {
+						id : checkBox.getAttribute('delete-contact-id')
+					});
+				});
 			}
 		});
 		let favouriteButton = document.querySelector('#favourites__btn');
@@ -187,8 +258,8 @@ function ContactListApp() {
 		let returnToFavBtn = document.querySelector('#return__to__fav__btn');
 		returnToFavBtn.addEventListener('click', () => {
 			this.UI.showFavouritesView();
-            this.clearSelected();
-            this.UI.updateSelectedStatus();
+			this.clearSelected();
+			this.UI.updateSelectedStatus();
 		});
 
 		document.querySelector('#add__fav__bar').addEventListener('click', () => {
@@ -203,9 +274,13 @@ function ContactListApp() {
 		let backDeleteBtn = document.querySelector('#back__delete__btn');
 		backDeleteBtn.addEventListener('click', () => {
 			this.UI.showUpdatedContactsView();
-            this.clearSelected();
-            this.UI.updateDeleteSelectedStatus();
-            
+			this.clearSelected();
+			this.UI.updateDeleteSelectedStatus();
+		});
+
+		let returnFromContactInfoPageBtn = document.querySelector('#nav__back');
+		returnFromContactInfoPageBtn.addEventListener('click', () => {
+			this.UI.showUpdatedContactsView();
 		});
 
 		document.querySelector('#contact__item__search').addEventListener('keyup', (e) => {
@@ -216,7 +291,7 @@ function ContactListApp() {
 			let matchedContacts = this.filterContacts(e.target.value);
 			this.UI.showFavouriteSelectContactsViewWithData(matchedContacts);
 		});
-        document.querySelector('#delete__contact__search').addEventListener('keyup', (e) => {
+		document.querySelector('#delete__contact__search').addEventListener('keyup', (e) => {
 			let matchedContacts = this.filterContacts(e.target.value);
 			this.UI.showDeleteContactsViewWithData(matchedContacts);
 		});
@@ -250,11 +325,44 @@ function ContactListApp() {
 	};
 	//@UI api
 	this.UI = {
+		toggleNames                             : function() {
+			let btnNode = document.querySelector('#toggle__name');
+			console.log(btnNode, 'add');
+			if (btnNode.classList.contains('toggle')) {
+				btnNode.classList.remove('toggle');
+				document.querySelectorAll('.other__names').forEach((input) => (input.style.display = 'none'));
+			} else {
+				btnNode.classList.add('toggle');
+				console.log(btnNode, 'remove');
+				document.querySelectorAll('.other__names').forEach((input) => (input.style.display = ''));
+			}
+		},
+		displayImage                            : function(url, nodeId, callback) {
+			let imgNode = document.getElementById(nodeId);
+			imgNode.setAttribute('src', url);
+			callback();
+		},
+		handleProfileImageChange                : function(callback, done) {
+			document.getElementById('profile__pic__input').addEventListener('change', (e) => {
+				if (e.target.files && e.target.files.length > 0) {
+					let fileReader = new FileReader();
+					fileReader.onload = function(e) {
+						callback(e.target.result, 'profile__contact__image', done);
+					};
+					fileReader.readAsDataURL(e.target.files[0]);
+				}
+			});
+		},
+		handleChooseImg                         : function() {
+			document.getElementById('choose__image__btn').addEventListener('click', () => {
+				document.getElementById('profile__pic__input').click();
+			});
+		},
 		updateSelectedStatus                    : function() {
 			document.querySelector('.favourite__selected__details').textContent = `(${parent.state.selected
 				.length}) Selected`;
 		},
-        updateDeleteSelectedStatus                    : function() {
+		updateDeleteSelectedStatus              : function() {
 			document.querySelector('.delete__selected__details').textContent = `(${parent.state.selected
 				.length}) Selected`;
 		},
@@ -262,8 +370,11 @@ function ContactListApp() {
 		createContactComponentAndBindToView     : function(data) {
 			//@creates a contact component and append to contact list view
 			let parentDiv = document.createElement('div');
-
 			parentDiv.setAttribute('class', 'contact__item');
+			parentDiv.setAttribute('contact__info__id', data.id);
+			parentDiv.addEventListener('click', () => {
+				this.showContactInformationView(data.id);
+			});
 			let childImg = document.createElement('img');
 			childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
 			childImg.alt = 'Pic.png';
@@ -303,6 +414,10 @@ function ContactListApp() {
 
 			let parentDiv = document.createElement('div');
 			parentDiv.setAttribute('class', 'contact__item');
+			parentDiv.setAttribute('contact__info__id', data.id);
+			parentDiv.addEventListener('click', () => {
+				this.showContactInformationView(data.id);
+			});
 			let childImg = document.createElement('img');
 			childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
 			childImg.alt = 'Pic.png';
@@ -320,6 +435,9 @@ function ContactListApp() {
 			let parentDiv = document.createElement('div');
 			parentDiv.setAttribute('class', 'fav__list__contact__item');
 			parentDiv.setAttribute('id', 'fav__list__contact__id');
+			parentDiv.addEventListener('click', () => {
+				this.showContactInformationView(data.id);
+			});
 			let childImg = document.createElement('img');
 			childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
 			childImg.alt = 'Pic.png';
@@ -430,6 +548,10 @@ function ContactListApp() {
 			let contactsView = document.querySelector('#contact__view__component');
 			contactsView.style = 'display:none';
 			document.querySelector('#contacts__btn').style.color = ' #b3b3b3';
+			let contactMenu = document.querySelector('#contacts__bottom__menu');
+			if (contactMenu.classList.contains('pop__up')) {
+				contactMenu.classList.remove('pop__up');
+			}
 		},
 		hideFavouritesView                      : function() {
 			this.hideFavouritesBall();
@@ -437,18 +559,41 @@ function ContactListApp() {
 			let favView = document.querySelector('#favourites__view__component');
 			favView.style = 'display:none';
 			document.querySelector('#favourites__btn').style.color = '#b3b3b3';
+			let favMenu = document.querySelector('#fav__bottom__menu');
+			if (favMenu.classList.contains('pop__up')) {
+				favMenu.classList.remove('pop__up');
+			}
 		},
 		showFavouritesView                      : function() {
 			this.hideLeftAndRightBars();
 			this.hideFavouriteSelectContactsView();
 			this.hideDeleteContactsView();
 			this.hideContactsView();
+			this.hideContactInformationView();
 			this.showFavouritesBall();
 			this.showFavouritesBottomBar();
-            this.showFavouriteList();
+			this.showFavouriteList();
 			document.querySelector('#favourites__btn').style.color = 'skyblue';
 			let contactsView = document.querySelector('#favourites__view__component');
 			contactsView.style = 'display:';
+		},
+		showContactInformationView              : function(id) {
+			document.querySelector('.contact_profile').style = 'display: ; z-index:7';
+			let contact = parent.state.contacts[id];
+			document.querySelector('.heading__letter').textContent = contact.name[0];
+			document.querySelector('#name_id').textContent = contact.name;
+			document.querySelector('#contact__info__email').textContent = contact.email;
+			document.querySelector('#mobile__phone').textContent = contact.phone;
+			document.querySelector('#telegram__number').textContent = contact.phone;
+			this.hideFavouriteSelectContactsView();
+			this.hideDeleteContactsView();
+			this.hideContactsView();
+			this.hideFavouritesView();
+			this.hideLeftAndRightBars();
+			this.hideEditComponentView();
+		},
+		hideContactInformationView              : function() {
+			document.querySelector('.contact_profile').style = 'display:none;';
 		},
 		showContactsView                        : function() {
 			//@Makes contacts view visible.
@@ -456,8 +601,10 @@ function ContactListApp() {
 			this.hideEditComponentView();
 			this.hideDeleteContactsView();
 			this.hideFavouritesView();
+			this.hideContactInformationView();
 			this.showContactsBall();
 			this.showContactsBottomBar();
+
 			let contactsView = document.querySelector('#contact__view__component');
 			contactsView.style = 'display:';
 			document.querySelector('#contacts__btn').style.color = 'skyblue';
@@ -486,10 +633,11 @@ function ContactListApp() {
 			let contactsViewComponent = document.querySelector('#contact__view__component');
 			contactsViewComponent.style = 'display:;z-index:7';
 			document.querySelector('#contacts__btn').style.color = 'skyblue';
-            this.hideEditComponentView();
-            this.hideDeleteContactsView();
+			this.hideEditComponentView();
+			this.hideDeleteContactsView();
 			this.hideFavouritesView();
 			this.showContactsBall();
+			this.hideContactInformationView();
 			this.showContactsBottomBar();
 			this.showLeftAndRightBars();
 			let contactsView = document.createElement('div');
@@ -518,6 +666,7 @@ function ContactListApp() {
 			this.hideFavouritesView();
 			this.showContactsBall();
 			this.showContactsBottomBar();
+			this.hideContactInformationView();
 			this.showLeftAndRightBars();
 			let contactsView = document.createElement('div');
 			contactsView.setAttribute('class', 'contact__list');
@@ -550,13 +699,27 @@ function ContactListApp() {
 			document.querySelector('.image__menu').style = 'display:none';
 		},
 
-		showEditComponentView                   : function(title) {
-			document.querySelector('#title').innerText = title;
+		showEditComponentView                   : function(type) {
+			switch (type) {
+				case 'profile':
+					document.querySelector('#title').innerText = 'Create new contact';
+					break;
+				case 'edit':
+					document.querySelector('#title').innerText = 'Edit contact';
+					break;
+				default:
+					document.querySelector('#title').innerText = 'Create new contact';
+					break;
+			}
+
 			this.hideEditComponentView();
 			this.hideFavouritesView();
 			this.hideDeleteContactsView();
 			this.hideFavouriteSelectContactsView();
+			this.hideContactInformationView();
 			this.hideImageMenu();
+			this.handleProfileImageChange(this.displayImage, this.hideImageMenu);
+			this.handleChooseImg();
 			document.querySelector('.edit__contact__component').style = 'display:; z-index:7';
 		},
 		hideDeleteContactsView                  : function() {
@@ -587,8 +750,8 @@ function ContactListApp() {
 			let contactContainer = document.querySelector('.delete__container');
 			let oldView = document.querySelector('#select__contact__list');
 			contactContainer.replaceChild(contactsView, oldView);
-            
-            const deleteContacts = document.querySelectorAll('[delete-contact-id]');
+
+			const deleteContacts = document.querySelectorAll('[delete-contact-id]');
 			deleteContacts.forEach((input) =>
 				input.addEventListener('change', (e) => {
 					switch (e.target.checked) {
@@ -606,7 +769,7 @@ function ContactListApp() {
 				})
 			);
 		},
-        showDeleteContactsViewWithData                  : function(data) {
+		showDeleteContactsViewWithData          : function(data) {
 			//@Makes select-contacts-view visible.
 			document.querySelector('.delete__contact__component').style = 'display:;z-index:7';
 
@@ -614,6 +777,7 @@ function ContactListApp() {
 			this.hideFavouritesView();
 			this.hideFavouriteSelectContactsView();
 			this.showDeleteContactsBottomBar();
+			this.hideContactInformationView();
 			let contactsView = document.createElement('div');
 			contactsView.setAttribute('class', 'select__contact__list');
 			contactsView.setAttribute('id', 'select__contact__list');
@@ -630,7 +794,7 @@ function ContactListApp() {
 			let contactContainer = document.querySelector('.delete__container');
 			let oldView = document.querySelector('#select__contact__list');
 			contactContainer.replaceChild(contactsView, oldView);
-            const deleteContacts = document.querySelectorAll('[delete-contact-id]');
+			const deleteContacts = document.querySelectorAll('[delete-contact-id]');
 			deleteContacts.forEach((input) =>
 				input.addEventListener('change', (e) => {
 					switch (e.target.checked) {
@@ -659,7 +823,7 @@ function ContactListApp() {
 			contactsView.setAttribute('class', 'select__fav__contact__list');
 			contactsView.setAttribute('id', 'select__fav__contact__list');
 			contactsView.setAttribute('style', 'display:');
-
+			this.hideContactInformationView();
 			//@Bind contacts data with view
 			const contacts = data;
 
@@ -671,7 +835,7 @@ function ContactListApp() {
 			let contactContainer = document.querySelector('.select__favourite__container');
 			let oldView = document.querySelector('#select__fav__contact__list');
 			contactContainer.replaceChild(contactsView, oldView);
-            const favContacts = document.querySelectorAll('[favourite-contact-id]');
+			const favContacts = document.querySelectorAll('[favourite-contact-id]');
 			favContacts.forEach((input) =>
 				input.addEventListener('change', (e) => {
 					switch (e.target.checked) {
@@ -694,6 +858,7 @@ function ContactListApp() {
 			document.querySelector('.select__favourite__contact__component').style = 'display:;z-index:7';
 			this.hideDeleteContactsView();
 			this.hideEditComponentView();
+			this.hideContactInformationView();
 			this.hideFavouritesView();
 			this.showSelectFavouriteContactsBottomBar();
 			let contactsView = document.createElement('div');
@@ -736,6 +901,7 @@ function ContactListApp() {
 
 			this.hideDeleteContactsView();
 			this.hideEditComponentView();
+			this.hideContactInformationView();
 			this.hideFavouriteSelectContactsView();
 			let contactsView = document.createElement('div');
 			contactsView.setAttribute('class', 'favourite__list');
@@ -787,27 +953,27 @@ function ContactListApp() {
 		this.UI.showUpdatedContactsView(contact);
 		//this.UI.renderView();
 	};
-    this.getSelected = function(){
-        return this.state.selected;
-    }
-    this.clearSelected = function(){
-        this.state.selected = [];
-    }
-    this.saveSelectedFavourites = function(){
-        const selected = this.getSelected();
-        for(let i=0; i< selected.length; ++i){
-            if(!this.state.favourites.includes(selected[i])){
-                this.state.favourites.push(selected[i]);
-            }
-        }
-    }
-    this.deleteSelectedContacts = function(){
-        const selected = this.getSelected();
-        for(let i=0; i< selected.length; ++i){
-            const newContacts = this.state.contacts.filter((contact) => contact.id != selected[i]);
-            this.state.contacts = newContacts;           
-        }
-    }
+	this.getSelected = function() {
+		return this.state.selected;
+	};
+	this.clearSelected = function() {
+		this.state.selected = [];
+	};
+	this.saveSelectedFavourites = function() {
+		const selected = this.getSelected();
+		for (let i = 0; i < selected.length; ++i) {
+			if (!this.state.favourites.includes(selected[i])) {
+				this.state.favourites.push(selected[i]);
+			}
+		}
+	};
+	this.deleteSelectedContacts = function() {
+		const selected = this.getSelected();
+		for (let i = 0; i < selected.length; ++i) {
+			const newContacts = this.state.contacts.filter((contact) => contact.id != selected[i]);
+			this.state.contacts = newContacts;
+		}
+	};
 	this.addOrRemoveFromSelected = function(contactId, operation) {
 		const contact = this.state.selected.filter((id) => id == contactId);
 		if (contact.length > 0) {

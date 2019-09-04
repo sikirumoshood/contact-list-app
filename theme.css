@@ -10,17 +10,51 @@ body {
 	margin-top: 60px;
 	color: skyblue;
 	background-color: white;
-	animation: fadin-out 1s ease-in-out;
+	animation: fadin-out 0.4s ease-in-out;
 	animation-fill-mode: both;
 	animation-direction: alternate;
-	box-shadow: 0px 0px 4px #8f8f8f;
+	box-shadow: 0px 0px 2px #8f8f8f;
 	padding: 10px;
+}
+.fav__bottom__menu,
+.contacts__bottom__menu {
+	position: absolute;
+	display: none;
+}
+.pop__up {
+	left: 1px;
+	width: 150px;
+	margin-bottom: 4px;
+	top: 280px;
+	color: black;
+	background-color: #ededed;
+	animation: pop-up 0.2s ease-in-out;
+	animation-fill-mode: forwards;
+	animation-direction: alternate;
+	box-shadow: 0px 0px 4px grey;
+	padding: 10px;
+	display: block;
+	z-index: 10;
+}
+
+.fav__bottom__menu__option,
+.contacts__bottom__menu {
+	margin: 10px;
+	font-size: 12px;
+	cursor: pointer;
 }
 .confirm__animate {
 	font-size: 12px;
 	margin-top: 10px;
 	color: black;
 	font-weight: lighter;
+}
+.other__names {
+	display: none;
+}
+.toggle {
+	transform: rotateZ(180deg);
+	transition: 0.8s;
 }
 @keyframes fadin-out {
 	0% {
@@ -33,7 +67,24 @@ body {
 		opacity: 1;
 	}
 }
-
+@keyframes pop-up {
+	0% {
+		opacity: 0.1;
+		transform: scale(0.1);
+	}
+	30% {
+		opacity: 0.5;
+		transform: scale(0.5);
+	}
+	50% {
+		opacity: 0.7;
+		transform: scale(0.7);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
 .top__bar {
 	height: 50px;
 	border-style: none;
@@ -159,7 +210,6 @@ body {
 	width: 600px;
 }
 
-
 .app {
 	width: 268px;
 	height: 540px;
@@ -214,9 +264,10 @@ body {
 }
 .favourite__list {
 	margin-left: 0;
-	height: 400px;
+	height: 380px;
 	width: 230px;
 	overflow-y: hidden;
+	margin-bottom: 60px;
 }
 .favourite__list:hover {
 	overflow-y: auto;
@@ -246,7 +297,6 @@ body {
 .contact__list {
 	margin-left: 0;
 	height: 300px;
-	margin-bottom: 50px;
 	overflow-y: hidden;
 }
 .contact__list:hover {
@@ -372,13 +422,14 @@ body {
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
-#menu__bottom__btn {
+#menu__bottom__btn,
+#fav__menu__bottom__btn#contact__menu__bottom__btn {
 	cursor: pointer;
 }
 
 .btn-left {
 	left: -10px;
-	position: absolute;	
+	position: absolute;
 	bottom: 0.8em;
 	font-size: 12px;
 	border-radius: 100%;
@@ -393,6 +444,7 @@ body {
 .icons li {
 	margin-top: 3px;
 	height: 7px;
+	cursor: pointer;
 }
 .plus_bar {
 	font-size: 16px;
@@ -425,7 +477,7 @@ body {
 	height: 25px;
 	border-style: none;
 	opacity: 1;
-	z-index: 3;
+	z-index: 2;
 	cursor: pointer;
 	box-shadow: 0px 0px 7px grey;
 }
@@ -556,37 +608,33 @@ body {
 	z-index: -1;
 }
 
-
 /* contact profile */
 
 .contact_profile {
 	position: absolute;
-	top: -16px;
+	top: -4px;
 	background-color: white;
 	font-size: 10px;
-	width: 239px;
+	width: 238px;
 	height: 424px;
 	padding: 60px 0px;
 	padding-left: 10px;
 	padding-right: 20px;
-	margin-left: 5px;
+	margin-left: -1px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
-
-
+	border-top-right-radius: 16px;
+	border-top-left-radius: 16px;
 }
 
- .contact_info_details {
-	 margin-top: 32px;
-	 width: 230px;
-	 padding-right: 10px;
-	 padding-left: 10px;
+.contact_info_details {
+	margin-top: 32px;
+	width: 230px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
 
- }
-
- .contact_name {
+.contact_name {
 	background-image: linear-gradient(to bottom right, red, yellow);
 	width: 270px;
 	height: 200px;
@@ -598,24 +646,38 @@ body {
 	font-style: italic;
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.navigate__back {
+	position: absolute;
+}
+#back__from__information {
+	border-style: none;
+	background-color: inherit;
+	outline-width: 0;
+}
+#nav__back {
+	cursor: pointer;
+	color: white;
+}
 
 .contact_name h1 {
-	font-size:300px;
+	font-size: 300px;
 	color: orangered;
 	margin-top: -110px;
-	margin-left: 60px;	
+}
+.contact_name {
+	text-align: center;
 }
 
 .contact_name_info {
 	position: absolute;
-	top:10em;
+	margin-left: -10px;
+	top: 10em;
+	width: 100%;
 	font-size: 17px;
-	margin-left: 50px;
 	color: white;
+	text-align: center;
 }
-
-#name_id {
-	margin-left: 40px;
+#name_id #contact__info__email {
 }
 
 .favorite_bar {
@@ -625,18 +687,16 @@ body {
 	border-radius: 50%;
 	background-color: white;
 	color: rgb(161, 158, 158);
-	text-align:center;
+	text-align: center;
 	font-size: 16px;
 	margin-left: 98px;
-	top:230px;
+	top: 230px;
 	box-shadow: 0px 0px 3px gray;
-	
-} 
+}
 .favorite_bar i {
 	position: absolute;
-	top:0.8em;
+	top: 0.8em;
 	left: 0.9em;
-	
 }
 .group_user {
 	margin-left: 20px;
@@ -669,7 +729,7 @@ body {
 	background-color: white;
 	border-style: solid;
 	border-width: 0.1em;
-	color:#b3b3b3;
+	color: #b3b3b3;
 }
 /* refactor by ifeanyi 348-354,operation should be removed */
 /* .phone_details span {
@@ -679,7 +739,7 @@ in: 10px;
 	font-size: 12px;
 } */
 
- .align_left {
+.align_left {
 	text-align: left;
 	width: 70%;
 	margin-top: 5px;
@@ -688,22 +748,22 @@ in: 10px;
 .group_user {
 	text-align: left;
 	margin-left: -1px;
-	color:rgb(148, 137, 137);
+	color: rgb(148, 137, 137);
 }
 
-.telegram_details i{
+.telegram_details i {
 	color: blue;
 }
 
-.telegram_left{
+.telegram_left {
 	width: 85%;
 	text-align: left;
 }
 .group_button_bar {
-font-size: 20px;
-display: flex;
-justify-content: space-between;
-margin-top: 40px;
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
 }
 
 #ringtone_info_btn_icon,
@@ -712,10 +772,15 @@ margin-top: 40px;
 	outline-width: 0;
 	outline-style: none;
 	cursor: pointer;
-
 }
 .edit__contact__component:hover {
 	overflow-y: auto;
+}
+#cancel__image {
+	display: inline-block;
+	margin-left: 40%;
+	color: red;
+	cursor: pointer;
 }
 .cancel__btn,
 .save__contact__btn {
@@ -756,6 +821,7 @@ margin-top: 40px;
 }
 .edit__top__bar {
 	margin-top: 10px;
+	padding-left: 13px;
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 20px;

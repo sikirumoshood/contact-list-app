@@ -60,72 +60,92 @@
                     </div> 
                 </div>
             </div>
-
+            <div class="contacts__bottom__menu " id="contacts__bottom__menu">
+                    <div class="fav__bottom__menu__option" id="delete__contact__option__btn">Delete contact</div>
+                    <div class="fav__bottom__menu__option">Import / export</div>
+                    <div class="fav__bottom__menu__option">Share visible contacts</div>
+                    <div class="fav__bottom__menu__option">Merge all repeat contacts</div>
+                    <div class="fav__bottom__menu__option">Accounts</div>
+                    <div class="fav__bottom__menu__option">Contacts to display</div>
+                   
+            </div>
             <div class="contacts__footer ">
-                <ul id="menu__bottom__btn" class="icons contacts-btn-left">
+                <ul id="contact__menu__bottom__btn" class="icons contacts-btn-left">
                     <li></li>
                     <li></li>
                     <li></li>
                 </ul>
-          
+                <div class="plus_bar" id="add__new__contact__btn">
+                    <span class="plus_icon"><i class="fa fa-plus"></i></span>
+                </div>  
            </div>
 
         <!-- contact profile -->
         <div class="contact_profile">
-            <div class="contact_name">
-                    <h1>A</h1>
-            </div>
-            <div class="contact_name_info">
-                    <span id="name_id">Andrea</span>
-                    <span>Andrea23@gmail.com</span>
-            </div>
-            <div class="favorite_bar">
-                <span><i class="fa fa-star"></i></span>
-            </div>
-            <div class="contact_info_details">
-                <div class="phone_details">
-                    <span><i class="fa fa-phone"></i></span> 
-                    <span class="align_left">080786432</span>
-                    <span><i class="fa fa-envelope"></i></span>
+                <div class="navigate__back">
+                    <button type="button " id="back__from__information"><i class="fa fa-long-arrow-left" id="nav__back"></i></button>
                 </div>
-                <div class="telegram_details">
-                        <span class=""><i class="fa fa-send"></i></span> 
-                        <span class="telegram_left">080786432</span>
+                <div class="contact_name">
+                        <h1 class="heading__letter">A</h1>
                 </div>
-
-                <div class="group_user">
-                    <h4> Groups & Ringtone</h4>
+                <div class="contact_name_info">
+                    <div id="name_id">Andrea</div>
+                    <div id="contact__info__email">Andrea23@gmail.com</div>
                 </div>
-                <div class="group_info">
-                     <span><i class="fa fa-group"></i></span>
-                    <span class="align_left">no group</span>
-                    <button type="button" class="chevron_icon_right" id="group_info_btn"><i class="fa fa-chevron-right" id="group_info_btn_icon"></i></button>
+                <div class="favorite_bar">
+                    <span><i class="fa fa-star"></i></span>
                 </div>
-                <div class="ringtone_info">
-                     <span><i class="fa fa-bell"></i></span>
-                     <span class="align_left">Default Ringtone </span>
-                     <button type="button" class="chevron_icon_right" id="ringtone_info_btn"><i class="fa fa-chevron-right" id="ringtone_info_btn_icon"></i></button>
+                <div class="contact_info_details">
+                    <div class="phone_details">
+                        <span><i class="fa fa-phone"></i></span> 
+                        <span class="align_left" id="mobile__phone">080786432</span>
+                        <span><i class="fa fa-envelope"></i></span>
+                    </div>
+                    <div class="telegram_details">
+                            <span class=""><i class="fa fa-send"></i></span> 
+                            <span class="telegram_left" id="telegram__number">080786432</span>
+                    </div>
+                    <div class="group_user">
+                        <h4> Groups & Ringtone</h4>
+                    </div>
+                    <div class="group_info">
+                         <span><i class="fa fa-group"></i></span>
+                        <span class="align_left">no group</span>
+                        <button type="button" class="chevron_icon_right" id="group_info_btn"><i class="fa fa-chevron-right" id="group_info_btn_icon"></i></button>
+                    </div>
+                    <div class="ringtone_info">
+                         <span><i class="fa fa-bell"></i></span>
+                         <span class="align_left">Default Ringtone </span>
+                         <button type="button" class="chevron_icon_right" id="ringtone_info_btn"><i class="fa fa-chevron-right" id="ringtone_info_btn_icon"></i></button>
+                    </div>
                 </div>
-            </div>
                 <div class="group_button_bar">
                     <span><i class="fa fa-ellipsis-v"></i></span>
                     <span><i class="fa fa-share-alt"></i></span>
                     <span><i class="fa fa-pencil"></i></span>
                 </div>
-                <div class="plus_bar" id="add__new__contact__btn">
-                    <span class="plus_icon"><i class="fa fa-plus"></i></span>
-                </div>   
+                 
             </div>
+            
+            
+            
+<!---------------- End of profile view----------------------------------            -->
             <div class="favourites__view__component" id="favourites__view__component">
                     <div class="favourites__container">
                         <span class="fav__title">My favourites</span>
-                        <div class="favourite__list" id="favourite__list">
-                            
+                        <div class="favourite__list" id="favourite__list">               
                         </div>
                     </div>
-
+                    <div class="fav__bottom__menu " id="fav__bottom__menu">
+                        <div class="fav__bottom__menu__option" id="remove__fav__option__btn">Remove from favourite</div>
+                        <div class="fav__bottom__menu__option">Import / export</div>
+                        <div class="fav__bottom__menu__option">Share visible contacts</div>
+                        <div class="fav__bottom__menu__option">Accounts</div>
+                        <div class="fav__bottom__menu__option">Contacts to display</div>
+                        <div class="fav__bottom__menu__option">Clear frequents</div>
+                    </div>
                     <div class="favourites__footer">
-                        <ul id="menu__bottom__btn" class="icons btn-left">
+                        <ul id="fav__menu__bottom__btn" class="icons btn-left">
                             <li></li>
                             <li></li>
                             <li></li>
@@ -142,7 +162,7 @@
             
             <!-- ----Edit component will be used for both edit, add new and save-->
             <div class="edit__contact__component" id="edit__contact__component">
-                    <form id="contact__form">
+                    <form id="contact__form" enctype="multipart/form-data">
                         <div class="edit__top__bar">
                             <button type="button" class="cancel__btn" id="cancel__edit__btn"><i class="fa fa-times"></i></button>
                             <span class="title" id="title">Edit contact</span>
@@ -157,9 +177,10 @@
                                 <div id="image__menu" class="image__menu">
                                     <div class="image__menu__option">
                                         <button type="button" id="take__photo__btn" >Take photo</button type="button" >
+                                        <span id="cancel__image"><i class="fa fa-times"></i></span>
                                     </div>
                                     <div class="image__menu__option">
-                                            <input type="file" name="profile__pic" id="profile__pic__input">
+                                            <input type="file" name="pic" id="profile__pic__input">
                                             <button  type="button" id="choose__image__btn">Choose photo</button>
                                     </div>
                                 </div>
@@ -173,19 +194,19 @@
     
                                 <div class="info__item others">
                                     <input class="info__input__item clear__margin" type="text" name="name" placeholder="Name">
-                                    <button type="button" class="info__input__icon__name"><i class="fa fa-chevron-down"></i></button type="button">
+                                    <button type="button" class="info__input__icon__name"  id="toggle__name"><i class="fa fa-chevron-up"></i></button>
                                 </div>
-                                <div class="info__item others">
-                                        <input class="info__input__item" type="text" name="first_name" placeholder="First name">
+                                <div class="info__item others other__names">
+                                        <input class="info__input__item " type="text" name="first_name" placeholder="First name">
                                 </div>
-                                <div class="info__item others">
-                                        <input class="info__input__item" type="text" name="middle_name" placeholder="Middle name">
+                                <div class="info__item others other__names">
+                                        <input class="info__input__item " type="text" name="middle_name" placeholder="Middle name">
                                 </div>
-                                <div class="info__item others">
-                                    <input class="info__input__item" type="text" name="last_name" placeholder="Last name">
+                                <div class="info__item others other__names">
+                                    <input class="info__input__item " type="text" name="last_name" placeholder="Last name">
                                 </div>
-                                <div class="info__item others">
-                                        <input class="info__input__item" type="text" name="name_suffix" placeholder="Name suffix">
+                                <div class="info__item others other__names">
+                                        <input class="info__input__item " type="text" name="name_suffix" placeholder="Name suffix">
                                 </div>
                                 <div class="info__item others">
                                     <input class="info__input__item" type="text" name="company" placeholder="Company">
