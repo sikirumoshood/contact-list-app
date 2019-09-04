@@ -144,14 +144,18 @@ function ContactListApp() {
 		let form = document.querySelector('#contact__form');
 
 		form.addEventListener('submit', (e) => {
+			//Prevent redirection
 			e.preventDefault();
 			let data = {};
+
+			//Process data before saving
 			let formData = new FormData(form);
 			for (let [ key, value ] of formData.entries()) {
 				data[key] = value;
 			}
 			data.pic = document.querySelector('#profile__contact__image').src;
-			console.log(data);
+			this.emit('addContact', data);
+			this.showUpdatedContactsView();
 		});
 
 		let favMenuBtn = document.querySelector('#fav__menu__bottom__btn');
@@ -609,7 +613,7 @@ function ContactListApp() {
 			contactsView.style = 'display:';
 			document.querySelector('#contacts__btn').style.color = 'skyblue';
 			//@Bind contacts data with view
-			const contacts = parent.getContacts();
+			const contacts = parent.sortContacts(parent.getContacts());
 			for (let index = 0; index < parent.getContactCount(); ++index) {
 				this.createContactComponentAndBindToView(contacts[index]);
 			}
@@ -646,7 +650,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.getContacts();
+			const contacts = parent.sortContacts(parent.getContacts());
 
 			for (let index = 0; index < parent.getContactCount(); ++index) {
 				contactsView.appendChild(this.createContactComponent(contacts[index]));
@@ -674,7 +678,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = data;
+			const contacts = parent.sortContacts(data);
 
 			for (let index = 0; index < data.length; ++index) {
 				contactsView.appendChild(this.createContactComponent(contacts[index]));
@@ -740,7 +744,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.getContacts();
+			const contacts = parent.sortContacts(parent.getContacts());
 
 			for (let index = 0; index < parent.getContactCount(); ++index) {
 				contactsView.appendChild(this.createSelectContactDeleteComponent(contacts[index]));
@@ -825,7 +829,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 			this.hideContactInformationView();
 			//@Bind contacts data with view
-			const contacts = data;
+			const contacts = parent.sortContacts(data);
 
 			for (let index = 0; index < data.length; ++index) {
 				contactsView.appendChild(this.createSelectContactFavouriteComponent(contacts[index]));
@@ -867,7 +871,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.getContacts();
+			const contacts = parent.sortContacts(parent.getContacts());
 
 			for (let index = 0; index < parent.getContactCount(); ++index) {
 				contactsView.appendChild(this.createSelectContactFavouriteComponent(contacts[index]));
@@ -909,7 +913,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.getFavourites();
+			const contacts = parent.sortContacts(parent.getFavourites());
 
 			for (let index = 0; index < contacts.length; ++index) {
 				contactsView.appendChild(this.createFavouriteListComponents(contacts[index]));
@@ -945,6 +949,15 @@ function ContactListApp() {
 	this.filterContacts = function(filter) {
 		filter = filter.toLowerCase();
 		return this.state.contacts.filter((contact) => contact.name.toLowerCase().indexOf(filter) > -1);
+	};
+	this.sortContacts = function(data) {
+		data.sort((contact1, contact2) => {
+			let contact1Name = contact1.name.toLowerCase();
+			let contact2Name = contact2.name.toLowerCase();
+			return contact1Name < contact2Name ? -1 : contact1Name > contact2Name ? 1 : 0;
+		});
+
+		return data;
 	};
 
 	//@Contact is an object  whose id is its index in the array.
