@@ -303,7 +303,7 @@ body {
 	overflow-y: auto;
 }
 
-.contact__image {
+.contact__image__pic {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
@@ -839,6 +839,7 @@ in: 10px;
 .contact__image {
 	width: 115px;
 	height: 100px;
+	border-radius: 50%;
 	cursor: pointer;
 }
 .info__item {

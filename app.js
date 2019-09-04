@@ -2,79 +2,51 @@ function ContactListApp() {
 	this.state = {
 		contacts   : [
 			{
-				id    : 0,
-				name  : 'Sikiru Moshood',
-				email : 'sikirumoshood@gmail.com',
-				phone : '+2348178573504',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED,
+				id     : 0,
+				name   : 'John Doe',
+				email  : 'doe@gmail.com',
+				mobile : '+2348178573504',
+				pic    : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED,
 			},
 			{
-				id    : 1,
-				name  : 'Miss Ogechi',
-				email : 'ogechi@gmail.com',
-				phone : '+23498765421',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
+				id     : 1,
+				name   : 'Miss Ogechi',
+				email  : 'ogechi@gmail.com',
+				mobile : '+23498765421',
+				pic    : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
 			{
-				id    : 2,
-				name  : 'Mr Ifeanyi',
-				email : 'ifeanyi@gmail.com',
-				phone : '+23409876543',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
+				id     : 2,
+				name   : 'Mr Ifeanyi',
+				email  : 'ifeanyi@gmail.com',
+				mobile : '+23409876543',
+				pic    : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
 			{
-				id    : 3,
-				name  : 'Engineer Joseph',
-				email : 'ejoseph@gmail.com',
-				phone : '+23476564311',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
+				id     : 3,
+				name   : 'Engineer Joseph',
+				email  : 'ejoseph@gmail.com',
+				mobile : '+23476564311',
+				pic    : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
 			{
-				id    : 4,
-				name  : 'Miss Maria',
-				email : 'mmaria@gmail.com',
-				phone : '+23490654311',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
+				id     : 4,
+				name   : 'Miss Maria',
+				email  : 'mmaria@gmail.com',
+				mobile : '+23490654311',
+				pic    : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			},
 			{
-				id    : 5,
-				name  : 'Samuel Adeyemo Salako',
-				email : 'sasalako@gmail.com',
-				phone : '+2348145679087',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
-			},
-			{
-				id    : 6,
-				name  : 'Catherine Angel',
-				email : 'cangel@gmail.com',
-				phone : '+2348098765422',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
-			},
-			{
-				id    : 7,
-				name  : 'Anabel Simon',
-				email : 'asimon@gmail.com',
-				phone : '+2348113456778',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
-			},
-			{
-				id    : 8,
-				name  : 'Damilola David',
-				email : 'ddavid@gmail.com',
-				phone : '+23490567843',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
-			},
-			{
-				id    : 9,
-				name  : 'Rashidat Mahmud',
-				email : 'rmahmud@gmail.com',
-				phone : '+2348166473504',
-				pic   : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
+				id     : 5,
+				name   : 'Samuel Adeyemo Salako',
+				email  : 'sasalako@gmail.com',
+				mobile : '+2348145679087',
+				pic    : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED
 			}
 		],
 		groups     : [ 'Company', 'Family', 'Friends' ],
 		phoneTypes : [ 'Mobile', 'Work', 'home' ],
-		favourites : [ 0, 1, 2 ],
+		favourites : [ 1, 2 ],
 		selected   : [],
 		defaultPic : 'img/pic-1.jpg'
 	};
@@ -91,6 +63,7 @@ function ContactListApp() {
 		});
 
 		window.addEventListener('newContact', (e) => {
+			console.log('New contacted added!');
 			this.addContact(e.detail);
 		});
 		window.addEventListener('deleteContact', (e) => {
@@ -154,8 +127,10 @@ function ContactListApp() {
 				data[key] = value;
 			}
 			data.pic = document.querySelector('#profile__contact__image').src;
-			this.emit('addContact', data);
-			this.showUpdatedContactsView();
+			data.id = this.getContactCount();
+			this.emit('newContact', data);
+			//RESET FORM HERE
+			this.UI.showUpdatedContactsView();
 		});
 
 		let favMenuBtn = document.querySelector('#fav__menu__bottom__btn');
@@ -380,9 +355,10 @@ function ContactListApp() {
 				this.showContactInformationView(data.id);
 			});
 			let childImg = document.createElement('img');
+
 			childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
 			childImg.alt = 'Pic.png';
-			childImg.class = 'contact__image';
+			childImg.setAttribute('class', 'contact__image__pic');
 			let childNameDiv = document.createElement('div');
 			childNameDiv.setAttribute('class', 'contact__name');
 			childNameDiv.innerText = data.name;
@@ -425,8 +401,9 @@ function ContactListApp() {
 			let childImg = document.createElement('img');
 			childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
 			childImg.alt = 'Pic.png';
-			childImg.class = 'contact__image';
+			childImg.setAttribute('class', 'contact__image__pic');
 			let childNameDiv = document.createElement('div');
+
 			childNameDiv.setAttribute('class', 'contact__name');
 			childNameDiv.innerText = data.name;
 			parentDiv.append(childImg, childNameDiv);
@@ -446,6 +423,7 @@ function ContactListApp() {
 			childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
 			childImg.alt = 'Pic.png';
 			childImg.class = 'fav__list__contact__image';
+			childImg.classList.add('contact__image__pic');
 			let childNameDiv = document.createElement('div');
 			childNameDiv.setAttribute('class', 'fav__list__contact__name');
 			childNameDiv.innerText = data.name;
@@ -461,7 +439,7 @@ function ContactListApp() {
 			let childImg = document.createElement('img');
 			childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
 			childImg.alt = 'Pic.png';
-			childImg.class = 'contact__image';
+			childImg.setAttribute('class', 'contact__image__pic');
 			let childNameDiv = document.createElement('div');
 			childNameDiv.setAttribute('class', 'contact__name');
 			childNameDiv.innerText = data.name;
@@ -482,7 +460,7 @@ function ContactListApp() {
 			let childImg = document.createElement('img');
 			childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
 			childImg.alt = 'Pic.png';
-			childImg.class = 'contact__image';
+			childImg.setAttribute('class', 'contact__image__pic');
 			let childNameDiv = document.createElement('div');
 			childNameDiv.setAttribute('class', 'contact__name');
 			childNameDiv.innerText = data.name;
@@ -587,8 +565,8 @@ function ContactListApp() {
 			document.querySelector('.heading__letter').textContent = contact.name[0];
 			document.querySelector('#name_id').textContent = contact.name;
 			document.querySelector('#contact__info__email').textContent = contact.email;
-			document.querySelector('#mobile__phone').textContent = contact.phone;
-			document.querySelector('#telegram__number').textContent = contact.phone;
+			document.querySelector('#mobile__phone').textContent = contact.mobile;
+			document.querySelector('#telegram__number').textContent = contact.mobile;
 			this.hideFavouriteSelectContactsView();
 			this.hideDeleteContactsView();
 			this.hideContactsView();
@@ -613,7 +591,7 @@ function ContactListApp() {
 			contactsView.style = 'display:';
 			document.querySelector('#contacts__btn').style.color = 'skyblue';
 			//@Bind contacts data with view
-			const contacts = parent.sortContacts(parent.getContacts());
+			const contacts = parent.getContacts();
 			for (let index = 0; index < parent.getContactCount(); ++index) {
 				this.createContactComponentAndBindToView(contacts[index]);
 			}
@@ -650,7 +628,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.sortContacts(parent.getContacts());
+			const contacts = parent.getContacts();
 
 			for (let index = 0; index < parent.getContactCount(); ++index) {
 				contactsView.appendChild(this.createContactComponent(contacts[index]));
@@ -678,7 +656,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.sortContacts(data);
+			const contacts = data;
 
 			for (let index = 0; index < data.length; ++index) {
 				contactsView.appendChild(this.createContactComponent(contacts[index]));
@@ -744,7 +722,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.sortContacts(parent.getContacts());
+			const contacts = parent.getContacts();
 
 			for (let index = 0; index < parent.getContactCount(); ++index) {
 				contactsView.appendChild(this.createSelectContactDeleteComponent(contacts[index]));
@@ -829,7 +807,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 			this.hideContactInformationView();
 			//@Bind contacts data with view
-			const contacts = parent.sortContacts(data);
+			const contacts = data;
 
 			for (let index = 0; index < data.length; ++index) {
 				contactsView.appendChild(this.createSelectContactFavouriteComponent(contacts[index]));
@@ -871,7 +849,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.sortContacts(parent.getContacts());
+			const contacts = parent.getContacts();
 
 			for (let index = 0; index < parent.getContactCount(); ++index) {
 				contactsView.appendChild(this.createSelectContactFavouriteComponent(contacts[index]));
@@ -913,7 +891,7 @@ function ContactListApp() {
 			contactsView.setAttribute('style', 'display:');
 
 			//@Bind contacts data with view
-			const contacts = parent.sortContacts(parent.getFavourites());
+			const contacts = parent.getFavourites();
 
 			for (let index = 0; index < contacts.length; ++index) {
 				contactsView.appendChild(this.createFavouriteListComponents(contacts[index]));
