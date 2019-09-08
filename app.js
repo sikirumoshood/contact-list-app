@@ -92,6 +92,20 @@ function ContactListApp() {
 			this.UI.updateDeleteSelectedStatus();
 		});
 
+		let contactLinks = document.querySelectorAll('.link__to__letter');
+		contactLinks.forEach((link) => {
+			link.addEventListener('click', (e) => {
+				let id = this.filterContactsFromLetter(e.target.textContent);
+
+				if (id !== null) {
+					this.UI.scrollToContact(id);
+					if (!link.classList.contains('active')) {
+						link.classList.add('active');
+					}
+				}
+			});
+		});
+
 		let removeNumberBtn = document.querySelector('.info__input__icon__delete');
 		removeNumberBtn.addEventListener('click', () => {
 			let mobileInput = document.querySelector('#mobile');
@@ -307,6 +321,15 @@ function ContactListApp() {
 	};
 	//@UI api
 	this.UI = {
+		scrollToContact                         : function(id) {
+			let contactItem = document.querySelector(`[contact__info__id = "${id}"]`);
+			contactItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			this.updateLeftBarIndicator(id);
+		},
+		updateLeftBarIndicator                  : function(contactId) {
+			const contact = parent.getContactById(contactId);
+			document.querySelector('.left__bar__letter__icon').textContent = contact.name[0].toUpperCase();
+		},
 		toggleNames                             : function() {
 			let btnNode = document.querySelector('#toggle__name');
 			console.log(btnNode, 'add');
@@ -959,6 +982,7 @@ function ContactListApp() {
 
 		if (res === undefined) {
 			this.state.contacts.push(contact);
+			this.UI.showUpdatedContactsView();
 		} else {
 			this.emit('updateContact', contact);
 		}
@@ -1013,7 +1037,18 @@ function ContactListApp() {
 		this.state.contacts[data.id] = data;
 		this.UI.showUpdatedContactsView();
 	};
-
+	this.filterContactsFromLetter = function(letter) {
+		let index = null;
+		for (let i = 0; i < this.getContactCount(); ++i) {
+			let nameLower = this.getContacts()[i].name.toLowerCase();
+			letter = letter.toLowerCase();
+			if (nameLower.startsWith(letter)) {
+				index = i;
+				break;
+			}
+		}
+		return index;
+	};
 	//@Emits a custom event
 	this.emit = function(eventName, data) {
 		return dispatchEvent(new CustomEvent(this.events[eventName], { bubbles: true, detail: data }));

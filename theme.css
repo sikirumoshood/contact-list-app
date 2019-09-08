@@ -91,6 +91,7 @@ body {
 	margin-bottom: 10px;
 	padding-left: 50px;
 }
+
 .hide {
 	opacity: 0;
 }
@@ -300,6 +301,12 @@ body {
 	height: 300px;
 	overflow-y: hidden;
 }
+.contact__list::after {
+	content: "";
+	display: block;
+	height: 250px;
+	width: 100%;
+}
 .contact__list:hover {
 	overflow-y: auto;
 }
@@ -357,7 +364,7 @@ body {
 	width: 6px;
 	height: 60px;
 	position: absolute;
-	left: 256px;
+	left: 250px;
 	font-size: 8px;
 	top: 130px;
 }
@@ -369,7 +376,16 @@ body {
 	margin-bottom: 20px;
 	cursor: pointer;
 }
-#active {
+.link__to__letter {
+	border-style: none;
+	outline-width: 0;
+	background-color: white;
+	font-family: cursive;
+	color: #bdbfbf;
+	font-size: 8px;
+	cursor: pointer;
+}
+.active {
 	color: skyblue;
 }
 .right__bar a {
