@@ -91,7 +91,9 @@ body {
 	margin-bottom: 10px;
 	padding-left: 50px;
 }
-
+.hide {
+	opacity: 0;
+}
 .top__bar__btn {
 	display: inline;
 	border-style: none;
@@ -103,17 +105,7 @@ body {
 	outline-width: 0;
 	transition: 1s;
 }
-/* .bottom__bar {
-	position: absolute;
-	z-index: 1;
-	background-color: white;
-	height: 30px;
-	padding: 5px;
-	width: 250px;
-	left: 10px;
-	top: 460px;
-	opacity: 0.8;
-} */
+
 #three__dots__button {
 	background-color: white;
 	cursor: pointer;
@@ -121,6 +113,15 @@ body {
 	border-style: none;
 	outline-width: 0;
 	font-size: 20px;
+}
+.contact__profile__controls {
+	background-color: white;
+	cursor: pointer;
+	color: #8f8f8f;
+	border-style: none;
+	outline-width: 0;
+	font-size: 20px;
+	font-weight: 100;
 }
 #contacts__btn {
 	color: skyblue;
@@ -645,6 +646,7 @@ body {
 	margin-left: -10px;
 	font-style: italic;
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	overflow: hidden;
 }
 .navigate__back {
 	position: absolute;
@@ -697,6 +699,13 @@ body {
 	position: absolute;
 	top: 0.8em;
 	left: 0.9em;
+}
+#group {
+	width: 70%;
+	border-style: none !important;
+	height: 20px !important;
+	outline-width: 0;
+	margin-top: 18px;
 }
 .group_user {
 	margin-left: 20px;

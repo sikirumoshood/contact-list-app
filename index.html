@@ -120,9 +120,9 @@
                     </div>
                 </div>
                 <div class="group_button_bar">
-                    <span><i class="fa fa-ellipsis-v"></i></span>
-                    <span><i class="fa fa-share-alt"></i></span>
-                    <span><i class="fa fa-pencil"></i></span>
+                    <button type="button" class="contact__profile__controls"><i class="fa fa-ellipsis-v"></i></button >
+                    <button type="button" class="contact__profile__controls"><i class="fa fa-share-alt"></i></button >
+                    <button type="button" class="contact__profile__controls" id="edit__profile"><i class="fa fa-pencil"></i></button>
                 </div>
                  
             </div>
@@ -172,6 +172,7 @@
                         
                         <hr class="edit__divider"/>
                         <div class="edit__info__container">
+                            <span class="hide" id="contact__profile__id"></span>
                             <div class="contact__image__pane">
                                 <img src="img/contact.png" class="contact__image" id="profile__contact__image">
                                 <div id="image__menu" class="image__menu">
@@ -184,6 +185,9 @@
                                             <button  type="button" id="choose__image__btn">Choose photo</button>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="info__item">
+                                <span class="info__item__label" id="local__profile">Local contact profile</span>
                             </div>
                             <div class="info__item">
                                 <input class="info__input__item" type="email" name="email" placeholder="Email">
@@ -234,13 +238,19 @@
         
                             </div>
                             <div class="info__item">
-                                    <input class="info__input__item date" type="date" name="birthday_date" placeholder="Date">         
+                                    <input class="info__input__item date" type="date" name="birthday_date" format="yyyy-mm-dd" placeholder="Date">         
                             </div>
                             <div class="info__item birthday__item">
                                     <span class="birthday">Birthday</span>                
                             </div>
                             <div class="info__item ">
-                                    <span class="info__group__name">Group name</span>                
+                                    <span class="info__item__label">Group</span>
+                                    <select name="group" id="group">
+                                        <option value=""></option>
+                                        <option value="Company">Company</option>
+                                        <option value="Family">Family</option>
+                                        <option value="Friends">Friend</option>
+                                    </select>             
                             </div>
                             <div class="input__item__group">
                                     <div class="info__item others">
@@ -250,7 +260,7 @@
         
                             </div>
                             <div class="add__item__btn">
-                                    <button type="button" class="info__group__name" id="add_new_item">Add more items</button>                
+                                    <button type="button" class="info__group__name" id="add_new_item" hidden>Add more items</button>                
                             </div>
                             <div class="delete__contact__btn">
                                     <button type="button" class="info__group__name" id="delete__contact">Delete</button>                

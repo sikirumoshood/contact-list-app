@@ -2,11 +2,12 @@ function ContactListApp() {
 	this.state = {
 		contacts   : [
 			{
-				id     : 0,
-				name   : 'John Doe',
-				email  : 'doe@gmail.com',
-				mobile : '+2348178573504',
-				pic    : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED,
+				id            : 0,
+				name          : 'John Doe',
+				email         : 'doe@gmail.com',
+				mobile        : '+2348178573504',
+				birthday_date : '1994-12-09',
+				pic           : 'img/pic-1.jpg' //DEFAULT IMAGE IF NO IMAGE IS SELECTED,
 			},
 			{
 				id     : 1,
@@ -91,16 +92,6 @@ function ContactListApp() {
 			this.UI.updateDeleteSelectedStatus();
 		});
 
-		//TO BE REFACTORED BY IFEANYI
-
-		//@Bind Contacts and favourite btn click events;
-		//        let contactListInfoItem = document.querySelectorAll('[contact__info__id]');
-		//         for (let i=0; i<contactListInfoItem.length; ++i ){
-		//             contactListInfoItem[i].addEventListener('click', ()=>{
-		//                 this.UI.showContactInformationView(contactListInfoItem[i].getAttribute('contact__info__id'))
-		//             })
-		//         }
-
 		let removeNumberBtn = document.querySelector('.info__input__icon__delete');
 		removeNumberBtn.addEventListener('click', () => {
 			let mobileInput = document.querySelector('#mobile');
@@ -113,6 +104,11 @@ function ContactListApp() {
 		let imagePopUpBtn = document.querySelector('#cancel__image');
 		imagePopUpBtn.addEventListener('click', () => {
 			this.UI.hideImageMenu();
+		});
+
+		let editProfileBtn = document.querySelector('#edit__profile');
+		editProfileBtn.addEventListener('click', () => {
+			this.UI.showEditComponentView('edit', editProfileBtn.getAttribute('contact__id'));
 		});
 		let form = document.querySelector('#contact__form');
 
@@ -127,9 +123,16 @@ function ContactListApp() {
 				data[key] = value;
 			}
 			data.pic = document.querySelector('#profile__contact__image').src;
-			data.id = this.getContactCount();
+
+			//Check if id exists
+			const id = document.querySelector('#contact__profile__id').textContent;
+			if (id !== '') {
+				data.id = parseInt(id);
+			} else {
+				data.id = this.getContactCount();
+			}
 			this.emit('newContact', data);
-			//RESET FORM HERE
+			this.UI.resetForm();
 			this.UI.showUpdatedContactsView();
 		});
 
@@ -367,27 +370,6 @@ function ContactListApp() {
 			document.querySelector('#contact__list').appendChild(parentDiv);
 		},
 
-		// TO BE REFACTORED BY IFEANYI
-		// createContactComponentAndBindToSelectView : function(data) {
-		// 	//@creates a contact component and append to contact list view
-		// 	let parentDiv = document.createElement('div');
-		// 	parentDiv.setAttribute('class', 'contact__item');
-		// 	let childImg = document.createElement('img');
-		// 	childImg.src = data.pic; //@UPDATE IMAGE PROPERTY
-		// 	childImg.alt = 'Pic.png';
-		// 	childImg.class = 'contact__image';
-		// 	let childNameDiv = document.createElement('div');
-		// 	childNameDiv.setAttribute('class', 'contact__name');
-		// 	childNameDiv.innerText = data.name;
-		// 	let childCheckBoxDiv = document.createElement('div');
-		// 	let selectBox = document.createElement('input');
-		// 	selectBox.setAttribute('type', 'checkbox');
-		// 	selectBox.setAttribute('contact-id', data.id);
-		// 	childCheckBoxDiv.appendChild(selectBox);
-		// 	parentDiv.append(childImg, childNameDiv, childCheckBoxDiv);
-
-		// 	document.querySelector('#select__contact__list').appendChild(parentDiv);
-		// },
 		createContactComponent                  : function(data) {
 			//@creates a contact component and append to contact list view
 			//@For update purpose
@@ -480,7 +462,6 @@ function ContactListApp() {
 			let ball = document.querySelector('.status__balls__pane > .contact__status__ball');
 			ball.style = 'opacity:0';
 		},
-
 		hideFavouritesBottomBar                 : function() {
 			document.querySelector('.favourites__footer').style = 'opacity:0';
 		},
@@ -567,6 +548,7 @@ function ContactListApp() {
 			document.querySelector('#contact__info__email').textContent = contact.email;
 			document.querySelector('#mobile__phone').textContent = contact.mobile;
 			document.querySelector('#telegram__number').textContent = contact.mobile;
+			document.querySelector('#edit__profile').setAttribute('contact__id', id);
 			this.hideFavouriteSelectContactsView();
 			this.hideDeleteContactsView();
 			this.hideContactsView();
@@ -601,13 +583,7 @@ function ContactListApp() {
 				.querySelector('#contact__item__search')
 				.setAttribute('placeholder', `Search total contacts (${count})`);
 		},
-		// showContactSelectListView            : function() {
-		// 	this.showRightBar();
-		// 	const contacts = parent.getContacts();
-		// 	for (let index = 0; index < parent.getContactCount(); ++index) {
-		// 		this.createContactComponentAndBindToSelectView(contacts[index]);
-		// 	}
-		// },
+
 		showUpdatedContactsView                 : function() {
 			//@Makes contacts view visible.
 
@@ -680,17 +656,56 @@ function ContactListApp() {
 		hideImageMenu                           : function() {
 			document.querySelector('.image__menu').style = 'display:none';
 		},
-
-		showEditComponentView                   : function(type) {
+		findDataByName                          : function(name, data) {
+			let formElement = document.querySelector(`[name=${name}]`);
+			switch (formElement.nodeName) {
+				case 'INPUT':
+					if (formElement.type === 'file') {
+						document.querySelector('#profile__contact__image').src = data[name];
+					} else {
+						formElement.value = data[name];
+					}
+					break;
+				case 'SELECT':
+					formElement.value = data[name];
+					break;
+			}
+		},
+		resetForm                               : function() {
+			console.log('Reset staged!');
+			let formElements = document.querySelectorAll(`[name]`);
+			document.querySelector('#profile__contact__image').src = 'img/contact.png';
+			document.querySelector('#contact__profile__id').textContent = '';
+			formElements.forEach((element) => {
+				switch (element.nodeName) {
+					case 'INPUT':
+					case 'SELECT':
+						if (element.type !== 'file') element.value = '';
+						break;
+				}
+			});
+		},
+		fillContactInfo                         : function(contactId) {
+			document.querySelector('#contact__profile__id').textContent = contactId;
+			const contact = parent.getContactById(contactId);
+			for (let key in contact) {
+				if (key !== 'id') this.findDataByName(key, contact);
+			}
+		},
+		showEditComponentView                   : function(type, id = null) {
 			switch (type) {
 				case 'profile':
 					document.querySelector('#title').innerText = 'Create new contact';
+					this.resetForm();
 					break;
 				case 'edit':
 					document.querySelector('#title').innerText = 'Edit contact';
+					document.querySelector('#local__profile').setAttribute('hidden', '');
+					this.fillContactInfo(parseInt(id));
 					break;
 				default:
 					document.querySelector('#title').innerText = 'Create new contact';
+					this.resetForm();
 					break;
 			}
 
@@ -940,9 +955,13 @@ function ContactListApp() {
 
 	//@Contact is an object  whose id is its index in the array.
 	this.addContact = function(contact) {
-		this.state.contacts.push(contact);
-		this.UI.showUpdatedContactsView(contact);
-		//this.UI.renderView();
+		const res = this.getContactById(contact.id);
+
+		if (res === undefined) {
+			this.state.contacts.push(contact);
+		} else {
+			this.emit('updateContact', contact);
+		}
 	};
 	this.getSelected = function() {
 		return this.state.selected;
@@ -986,7 +1005,9 @@ function ContactListApp() {
 		this.state.contacts = newContacts;
 		this.UI.showUpdatedContactsView();
 	};
-
+	this.getContactById = function(id) {
+		return this.state.contacts[id];
+	};
 	//@Contact id and the data to update
 	this.updateContact = function(data) {
 		this.state.contacts[data.id] = data;
